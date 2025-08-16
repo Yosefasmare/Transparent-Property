@@ -75,7 +75,7 @@ const PropertyGallery = ({ propertyImagePaths }: Props) => {
 
   return (
     <div 
-      className="relative overflow-hidden rounded-2xl"
+      className="relative overflow-hidden rounded-sm"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

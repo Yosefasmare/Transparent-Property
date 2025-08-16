@@ -85,7 +85,7 @@ const ResetPasswordForm = () => {
         <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
           <FiCheckCircle className="h-8 w-8 text-green-600" />
         </div>
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Password Reset!</h2>
+        <h2 className="text-2xl sm:text-3xl font-medium text-gray-800 mb-2">Password Reset!</h2>
         <p className="text-gray-600 mb-8">
           Your password has been successfully reset. You can now sign in with your new password.
         </p>
@@ -111,7 +111,7 @@ const ResetPasswordForm = () => {
 
         {/* New Password Field */}
         <div className="group">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="password" className="block text-sm font-normal text-gray-600 mb-2">
             New Password
           </label>
           <div className="relative">
@@ -126,7 +126,7 @@ const ResetPasswordForm = () => {
               required
               value={formData.password}
               onChange={handleInputChange}
-              className="appearance-none relative block w-full pl-10 pr-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-all duration-200 hover:border-gray-400"
+              className="appearance-none relative block w-full pl-10 pr-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-all duration-200 hover:border-gray-400"
               placeholder="Enter your new password"
               disabled={loading}
             />
@@ -164,7 +164,7 @@ const ResetPasswordForm = () => {
 
         {/* Confirm Password Field */}
         <div className="group">
-          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="confirmPassword" className="block text-sm font-normal text-gray-600 mb-2">
             Confirm New Password
           </label>
           <div className="relative">
@@ -179,7 +179,7 @@ const ResetPasswordForm = () => {
               required
               value={formData.confirmPassword}
               onChange={handleInputChange}
-              className="appearance-none relative block w-full pl-10 pr-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-all duration-200 hover:border-gray-400"
+              className="appearance-none relative block w-full pl-10 pr-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-all duration-200 hover:border-gray-400"
               placeholder="Confirm your new password"
               disabled={loading}
             />
@@ -240,7 +240,7 @@ const ResetPasswordForm = () => {
       <div className="text-center">
         <a 
           href="/admin" 
-          className="text-sm font-medium text-indigo-600 hover:text-indigo-500 transition-colors"
+          className="text-sm font-normal text-indigo-600 hover:text-indigo-500 transition-colors"
         >
           ← Back to login
         </a>

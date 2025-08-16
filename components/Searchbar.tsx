@@ -80,7 +80,7 @@ const Searchbar = () => {
         <div className="inline-flex rounded-full bg-gray-100 p-1 shadow-inner border border-gray-200">
           <button
             type="button"
-            className={`px-6 py-2 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-sm md:text-base ${status === "All" ? "bg-indigo-600 text-white shadow" : "text-gray-700 hover:bg-indigo-50"}`}
+            className={`px-6 py-2 rounded-full font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-sm md:text-base ${status === "All" ? "bg-indigo-600 text-white shadow" : "text-gray-600 hover:bg-indigo-50"}`}
             onClick={() => setStatus("All")}
             disabled={loading}
           >
@@ -88,7 +88,7 @@ const Searchbar = () => {
           </button>
           <button
             type="button"
-            className={`px-6 py-2 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-sm md:text-base ${status === "Rent" ? "bg-indigo-600 text-white shadow" : "text-gray-700 hover:bg-indigo-50"}`}
+            className={`px-6 py-2 rounded-full font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-sm md:text-base ${status === "Rent" ? "bg-indigo-600 text-white shadow" : "text-gray-600 hover:bg-indigo-50"}`}
             onClick={() => setStatus("Rent")}
             disabled={loading}
           >
@@ -96,7 +96,7 @@ const Searchbar = () => {
           </button>
           <button
             type="button"
-            className={`px-6 py-2 rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-sm md:text-base ${status === "Buy" ? "bg-indigo-600 text-white shadow" : "text-gray-700 hover:bg-indigo-50"}`}
+            className={`px-6 py-2 rounded-full font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-sm md:text-base ${status === "Buy" ? "bg-indigo-600 text-white shadow" : "text-gray-600 hover:bg-indigo-50"}`}
             onClick={() => setStatus("Buy")}
             disabled={loading}
           >
@@ -107,11 +107,16 @@ const Searchbar = () => {
       {/* Add padding top and left to avoid overlap with absolute chooser */}
       <div className="overflow-hidden p-2 ">
         <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch">
+           <label htmlFor="propertyType" className=" hidden">
+             Property Type
+            </label>
           {/* Property Type */}
           <select
             value={propertyType}
+            name='propertyType'
+            id='propertyType'
             onChange={(e) => setPropertyType(e.target.value)}
-            className="w-full md:w-auto px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700"
+            className="w-full md:w-auto px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-600"
             disabled={loading}
           >
             <option value={""}>Property Type</option>
@@ -125,11 +130,19 @@ const Searchbar = () => {
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Location (e.g., Addis Ababa)"
-            className="w-full md:w-auto px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700"
+            className="w-full md:w-auto px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-600"
             disabled={loading}
           />
           {/* Price Range */}
-         <select onChange={e=>setCondition(e.target.value)} value={condition} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700">
+          <label htmlFor="propertyCondition" className=" hidden">
+             Property Condition
+            </label>
+         <select
+         name='propertyCondition'
+         id='propertyCondition'
+          onChange={e=>setCondition(e.target.value)}
+           value={condition}
+            className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-600">
                 <option value="">Property Condition</option>
                 {propertyConditions.map((condition) => (
                   <option key={condition} value={condition.toLocaleLowerCase()}>{condition}</option>
@@ -138,7 +151,7 @@ const Searchbar = () => {
           {/* Search Button */}
           <button
             type="submit"
-            className="w-full cursor-pointer md:w-auto px-6 py-2 rounded-md bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full cursor-pointer md:w-auto px-6 py-2 rounded-md bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
             disabled={loading}
           >
             {loading && (
@@ -152,7 +165,7 @@ const Searchbar = () => {
           <button
             type="button"
             onClick={handleClear}
-            className="w-full cursor-pointer md:w-auto px-6 py-2 rounded-md bg-red-600 text-white font-semibold shadow hover:bg-red-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full cursor-pointer md:w-auto px-6 py-2 rounded-md bg-red-600 text-white font-medium shadow hover:bg-red-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             disabled={loading}
           >
             Clear

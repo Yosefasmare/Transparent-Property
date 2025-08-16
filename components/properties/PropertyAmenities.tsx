@@ -77,7 +77,7 @@ const PropertyAmenities = ({ PropertyAmenities, AdditionalInfo }: Props) => {
         <IconComponent className={`w-5 h-5 ${
           available ? 'text-green-500' : 'text-gray-400'
         }`} />
-        <span className={`font-medium ${
+        <span className={`font-normal ${
           available ? 'text-green-700' : 'text-gray-400'
         }`}>
           {name}
@@ -92,13 +92,13 @@ const PropertyAmenities = ({ PropertyAmenities, AdditionalInfo }: Props) => {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-8">
-      <h3 className="text-2xl font-semibold text-gray-800 mb-6">Amenities & Features</h3>
+    <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+      <h3 className="text-xl sm:text-2xl font-medium text-gray-800 mb-6">Amenities & Features</h3>
       
       <div className="space-y-8">
         {/* Essential Amenities */}
         <div>
-          <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <h4 className="text-base sm:text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
             <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
             Essential Amenities
           </h4>
@@ -116,7 +116,7 @@ const PropertyAmenities = ({ PropertyAmenities, AdditionalInfo }: Props) => {
 
         {/* Outdoor Amenities */}
         <div>
-          <h4 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <h4 className="text-base sm:text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             Outdoor & Recreation
           </h4>
@@ -136,19 +136,19 @@ const PropertyAmenities = ({ PropertyAmenities, AdditionalInfo }: Props) => {
 
       {/* Additional Information */}
       <div className="mt-8 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
-        <h4 className="text-lg font-semibold text-gray-800 mb-3">Additional Information</h4>
+        <h4 className="text-base sm:text-lg font-medium text-gray-800 mb-3">Additional Information</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm capitalize text-gray-600">
           <div>
-            <span className="font-medium">Property Type:</span> {AdditionalInfo.type}
+            <span className="font-normal">Property Type:</span> {AdditionalInfo.type}
           </div>
           <div>
-            <span className="font-medium">Year Built:</span> {AdditionalInfo.year_built || 'New'}
+            <span className="font-normal">Year Built:</span> {AdditionalInfo.year_built || 'New'}
           </div>
           <div>
-            <span className="font-medium">Condition:</span>  {AdditionalInfo.condition}
+            <span className="font-normal">Condition:</span>  {AdditionalInfo.condition}
           </div>
           <div>
-           <span className="font-medium">Furnishing:</span> {AdditionalInfo.furnishing}
+           <span className="font-normal">Furnishing:</span> {AdditionalInfo.furnishing}
           </div>
         </div>
       </div>

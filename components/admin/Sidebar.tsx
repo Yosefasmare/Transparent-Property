@@ -1,18 +1,21 @@
 'use client'
 
-import { FiX, FiHome, FiMapPin, FiMessageSquare, FiSettings, FiLogOut } from 'react-icons/fi'
+import { FiX, FiHome, FiMapPin, FiMessageSquare, FiSettings, FiLogOut, FiUser } from 'react-icons/fi'
 import { useMobileSidebar } from './MobileSidebarContext'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import useStore from '@/lib/store'
 
 const Sidebar = () => {
   const { isMobileSidebarOpen, closeMobileSidebar } = useMobileSidebar()
   const pathname = usePathname()
+  const {agentData} =useStore()
   
   const navItems = [
     { name: 'Dashboard', icon: FiHome, href: '/admin' },
     { name: 'My Properties', icon: FiMapPin, href: '/admin/properties' },
     { name: 'Inquiries', icon: FiMessageSquare, href: '/admin/inquiries' },
+    ...(agentData?.isManager ? [{ name: 'Agents', icon: FiUser, href: `/admin/agents` }] : []),
     { name: 'Settings', icon: FiSettings, href: '/admin/settings' },
   ]
 
@@ -43,10 +46,10 @@ const Sidebar = () => {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Admin Panel</h2>
+            <h2 className="text-base sm:text-lg font-medium text-gray-800">Admin Panel</h2>
             <button
               onClick={closeMobileSidebar}
-              className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+              className="p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-100"
             >
               <FiX className="h-5 w-5" />
             </button>
@@ -61,10 +64,10 @@ const Sidebar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`flex items-center px-3 py-2 rounded-md text-sm font-normal transition-colors ${
                     active
                       ? 'text-indigo-600 bg-indigo-50 border-r-2 border-indigo-600'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                   }`}
                   onClick={closeMobileSidebar}
                 >
@@ -79,7 +82,7 @@ const Sidebar = () => {
           <div className="p-4 border-t border-gray-200">
             <Link
               href="/logout"
-              className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors"
+              className="flex items-center px-3 py-2 rounded-md text-sm font-normal text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors"
             >
               <FiLogOut className="mr-3 h-5 w-5" />
               Logout

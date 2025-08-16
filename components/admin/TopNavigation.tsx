@@ -49,13 +49,13 @@ const TopNavigation =  () => {
           <div className="flex items-center">
             <button
               onClick={toggleMobileSidebar}
-              className="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+              className="lg:hidden p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-100"
             >
               <FiMenu className="h-6 w-6" />
             </button>
             
             <div className="flex-shrink-0 flex items-center">
-              <h1 className="text-xl font-bold text-indigo-600">HuluHouse</h1>
+              <h1 className="text-xl font-medium text-indigo-600">HuluHouse</h1>
             </div>
             
             {/* Desktop Navigation */}
@@ -66,10 +66,10 @@ const TopNavigation =  () => {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    className={`px-3 py-2 rounded-md text-sm font-normal transition-colors ${
                       isActive
                         ? 'text-indigo-600 bg-indigo-50'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                        : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                     }`}
                   >
                     {link.name}
@@ -85,7 +85,7 @@ const TopNavigation =  () => {
             <div className="relative">
               <button
                 onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                className="flex items-center space-x-2 p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className="flex items-center space-x-2 p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-100"
               >
                 <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center overflow-hidden">
                   {agentData?.profilePic_path ? (
@@ -100,8 +100,8 @@ const TopNavigation =  () => {
                   <FiUser className="h-4 w-4 text-white" />
                   }
                 </div>
-                <span className="hidden md:block text-sm font-medium">
-                  {agentData?.isManager ? 'Manager' : 'Agent'} <span className='text-lg font-serif underline text-green-600 font-bold'>{agentData?.name}</span>
+                <span className="hidden md:block text-sm font-normal">
+                  {agentData?.isManager ? 'Manager' : 'Agent'} <span className='text-lg font-serif underline text-green-600 font-medium'>{agentData?.name}</span>
                 </span>
               </button>
 
@@ -109,7 +109,7 @@ const TopNavigation =  () => {
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
                   <Link
                     href="/admin/settings"
-                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="flex items-center px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
                   >
                     <FiSettings className="mr-3 h-4 w-4" />
                     Settings

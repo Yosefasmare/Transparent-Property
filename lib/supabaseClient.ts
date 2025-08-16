@@ -74,6 +74,21 @@ export async function getProperties(limit = 100, {status, type, location, minPri
   return data
 }
 
+export const getSavedProperties = async (savedIds:string[]) => {
+  console.log(savedIds)
+  const {data,error} = await supabase
+  .from('properties')
+  .select('*')
+  .eq('id',savedIds)
+
+  if(error){
+    console.log(error)
+    return null
+  }
+
+  return data
+}
+
 export const getLocations = async (limit = 100) => {
   try {
     const { data, error } = await supabase

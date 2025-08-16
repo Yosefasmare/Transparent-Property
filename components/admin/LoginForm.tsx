@@ -116,7 +116,7 @@ const LoginForm = () => {
 
         {/* Email Field */}
         <div className="group">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="email" className="block text-sm font-normal text-gray-600 mb-2">
             Email address
           </label>
           <div className="relative">
@@ -131,7 +131,7 @@ const LoginForm = () => {
               required
               value={formData.email}
               onChange={handleInputChange}
-              className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-all duration-200 hover:border-gray-400"
+              className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-all duration-200 hover:border-gray-400"
               placeholder="Enter your email"
               disabled={loading}
             />
@@ -140,7 +140,7 @@ const LoginForm = () => {
 
         {/* Password Field */}
         <div className="group">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="password" className="block text-sm font-normal text-gray-600 mb-2">
             Password
           </label>
           <div className="relative">
@@ -155,7 +155,7 @@ const LoginForm = () => {
               required
               value={formData.password}
               onChange={handleInputChange}
-              className="appearance-none relative block w-full pl-10 pr-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-all duration-200 hover:border-gray-400"
+              className="appearance-none relative block w-full pl-10 pr-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm transition-all duration-200 hover:border-gray-400"
               placeholder="Enter your password"
               disabled={loading}
             />
@@ -176,7 +176,7 @@ const LoginForm = () => {
         <div className="text-sm">
           <button 
           onClick={()=>handleResetPassword()}
-          className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
+          className="font-normal text-indigo-600 hover:text-indigo-500 transition-colors">
             Forgot your password?
           </button>
         </div>

@@ -12,6 +12,8 @@ interface Property {
         beds: number;
         baths: number;
         size: number;
+        created_at?: string;
+        views?: number;
 }
 
 interface SearchParams {

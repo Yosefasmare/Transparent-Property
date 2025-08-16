@@ -35,7 +35,7 @@ export default function Highlights() {
   return (
     <section className="py-12 bg-gray-50" id="highlights">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">Why Choose Us</h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-800 mb-8 text-center">Why Choose Us</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {highlights.map((item, idx) => (
             <div
@@ -43,8 +43,8 @@ export default function Highlights() {
               className="bg-white rounded-xl shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-300"
             >
               <div className="mb-4">{item.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">{item.title}</h3>
-              <p className="text-gray-500 text-sm">{item.desc}</p>
+              <h3 className="text-base sm:text-lg font-medium text-gray-800 mb-2">{item.title}</h3>
+              <p className="text-gray-600 text-sm">{item.desc}</p>
             </div>
           ))}
         </div>

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-
 export const metadata: Metadata = {
   title: "Hulu House - Trusted House Renting & Selling Platform",
   description: "Discover your perfect home with Hulu House. We're a transparent and trusted platform for renting and selling houses. Browse verified properties, connect with reliable agents, and make informed decisions with confidence. Your trusted partner in real estate.",
@@ -37,9 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={` antialiased`}
-      >
+      <body className="antialiased">
         {children}
       </body>
     </html>

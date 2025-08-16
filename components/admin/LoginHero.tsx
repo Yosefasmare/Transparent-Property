@@ -13,10 +13,10 @@ const LoginHero = () => {
       {/* Content */}
       <div className="relative h-full flex items-center justify-center">
         <div className="text-center text-white px-8">
-          <h1 className="text-4xl font-bold mb-4 animate-fade-in-left">
+          <h1 className="text-3xl sm:text-4xl font-medium mb-4 animate-fade-in-left">
             HuluHouse Admin
           </h1>
-          <p className="text-xl opacity-90 animate-fade-in-right">
+          <p className="text-lg sm:text-xl opacity-90 animate-fade-in-right">
             Manage your properties with ease
           </p>
           <div className="mt-8 space-y-4 animate-fade-in-up">

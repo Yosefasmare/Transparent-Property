@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { FaBarsStaggered, FaRegCircleUser, FaXmark } from "react-icons/fa6";
+import { FaBarsStaggered, FaXmark } from "react-icons/fa6";
+import { IoBookmark } from "react-icons/io5";
 
 const navLinks = [
   { name: "Properties", href: "/properties" },
@@ -38,10 +39,10 @@ export default function Header() {
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-tight">
+            <span className="font-medium text-xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-tight">
               Hulu House
             </span>
-            <span className="text-xs text-gray-500 font-medium">Premium Properties</span>
+            <span className="text-xs text-gray-500 font-normal">Premium Properties</span>
           </div>
         </Link>
 
@@ -53,10 +54,10 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative px-5 py-2.5 rounded-xl font-medium transition-all duration-300 ${
+                className={`relative px-5 py-2.5 rounded-xl font-normal transition-all duration-300 ${
                   isActive
                     ? "text-white bg-gradient-to-r from-indigo-500 to-purple-600 shadow-lg shadow-indigo-500/25"
-                    : "text-gray-700 hover:text-indigo-600 hover:bg-white/80"
+                    : "text-gray-600 hover:text-indigo-600 hover:bg-white/80"
                 }`}
               >
                 {link.name}
@@ -71,19 +72,20 @@ export default function Header() {
         {/* Profile Link */}
         <div className="flex items-center gap-3">
           <Link 
-            href="/profile" 
+            href="/saved-properties" 
             className="hidden md:inline-flex items-center gap-2 px-3 py-2.5 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 hover:from-indigo-100 hover:to-purple-100 transition-all duration-300 group border border-indigo-100 hover:border-indigo-200 shadow-sm hover:shadow-md"
           >
             <div className="relative">
-              <FaRegCircleUser size={20} className="text-indigo-600 group-hover:text-indigo-700 transition-colors" />
+              <IoBookmark size={20} className="text-yellow-500 group-hover:text-yellow-700 transition-colors" />
               <div className="absolute -inset-1 bg-indigo-400 rounded-full blur opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </div>
-            <span className="text-gray-700 font-semibold group-hover:text-indigo-700 transition-colors">Profile</span>
+            <span className="text-gray-600 font-normal group-hover:text-indigo-700 transition-colors capitalize">saved/liked properties</span>
           </Link>
 
           {/* Mobile Menu Button */}
           <button 
             className="lg:hidden p-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 focus:outline-none transition-all duration-300 border border-gray-200"
+             aria-label="Open menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <FaXmark size={18} /> : <FaBarsStaggered size={18} />}
@@ -101,10 +103,10 @@ export default function Header() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`block px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
+                  className={`block px-4 py-3 rounded-xl font-normal transition-all duration-300 ${
                     isActive
                       ? "text-white bg-gradient-to-r from-indigo-500 to-purple-600 shadow-lg"
-                      : "text-gray-700 hover:text-indigo-600 hover:bg-gray-50"
+                      : "text-gray-600 hover:text-indigo-600 hover:bg-gray-50"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -114,12 +116,12 @@ export default function Header() {
             })}
             <div className="pt-2 border-t border-gray-100">
               <Link
-                href="/profile"
+                href="/saved-properties"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 hover:from-indigo-100 hover:to-purple-100 transition-all duration-300"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <FaRegCircleUser size={20} className="text-indigo-600" />
-                <span className="text-gray-700 font-semibold">Profile</span>
+               <IoBookmark size={20} className="text-yellow-500" />
+                <span className="text-gray-600 font-normal capitalize">saved/liked properties</span>
               </Link>
             </div>
           </div>

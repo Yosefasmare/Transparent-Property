@@ -39,7 +39,7 @@ const LocationCard = ({loc}:locationType) => {
         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg">
           <div className="flex items-center gap-2">
             <HiOutlineHome className="w-4 h-4 text-blue-600" />
-            <span className="text-sm font-semibold text-gray-800">
+            <span className="text-sm font-medium text-gray-800">
               {loc.num_property}
             </span>
           </div>
@@ -51,13 +51,13 @@ const LocationCard = ({loc}:locationType) => {
       </div>
        {/* Content Section */}
       <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+        <h3 className="text-lg sm:text-xl font-medium text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
           {loc.loc_name}
         </h3>
         
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-gray-600">
-            <span className="text-sm font-medium">
+            <span className="text-sm font-normal">
               {loc.num_property} Properties
             </span>
           </div>

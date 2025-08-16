@@ -37,7 +37,7 @@ const SignUpHeader = ({ currentStep }: SignUpHeaderProps) => {
       <div className="mx-auto w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4">
         <FiUserPlus className="h-8 w-8 text-white" />
       </div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">
+      <h1 className="text-2xl sm:text-3xl font-medium text-gray-800 mb-2">
         {getTitle()}
       </h1>
       <p className="text-gray-600">

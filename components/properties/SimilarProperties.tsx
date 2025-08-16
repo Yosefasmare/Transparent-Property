@@ -71,7 +71,7 @@ const SimilarProperties = ({ CurrentProperty }: Props) => {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Similar Properties</h2>
+            <h2 className="text-2xl sm:text-3xl font-medium text-gray-800 mb-2">Similar Properties</h2>
             <p className="text-gray-600">Discover other properties you might like</p>
           </div>
           
@@ -97,7 +97,7 @@ const SimilarProperties = ({ CurrentProperty }: Props) => {
             <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
               <FaMagnifyingGlass className="text-4xl text-gray-400" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">No Similar Properties Found</h3>
+            <h3 className="text-lg sm:text-xl font-medium text-gray-700 mb-2">No Similar Properties Found</h3>
             <p className="text-gray-500 text-center max-w-md mb-8">
               We couldn&apos;t find any properties similar to this one. Try adjusting your search criteria or browse our full collection.
             </p>
@@ -109,7 +109,7 @@ const SimilarProperties = ({ CurrentProperty }: Props) => {
             <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-6 animate-pulse">
               <FaSpinner className="text-2xl text-white animate-spin" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">Finding Similar Properties</h3>
+            <h3 className="text-lg sm:text-xl font-medium text-gray-700 mb-2">Finding Similar Properties</h3>
             <p className="text-gray-500 text-center max-w-md">
               We&apos;re searching for properties that match your criteria. This won&apos;t take long.
             </p>
@@ -131,7 +131,7 @@ const SimilarProperties = ({ CurrentProperty }: Props) => {
         <div className="text-center mt-12">
           <Link
             href="/properties"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-xl hover:from-indigo-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             View All Properties
             <FaChevronRight />

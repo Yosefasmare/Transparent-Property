@@ -20,8 +20,10 @@ const PropertyPage = async ({ params }: Props) => {
   const posted_by = await getPosted_by(property.agent_id)
 
   const PropertyInfos = {
+    id: property?.id,
     title: property?.title,
     price: property?.price,
+    price_per: property.price_per,
     status: property?.status,
     type: property?.type,
     location: `${property?.location.area}, ${property?.location.state}`,

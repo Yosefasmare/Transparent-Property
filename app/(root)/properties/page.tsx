@@ -5,11 +5,16 @@ import CollapsibleSearchBar from "@/components/CollapsibleSearchBar";
 import { HiHome } from "react-icons/hi";
 import Link from "next/link";
 import PropertyContainer from "@/components/properties/PropertyContainer";
+import Pagination from "@/components/Pagination";
 
 
 
 export default async function PropertiesPage({searchParams}: {searchParams: Promise<{ [key: string]: string }>}) {
-  const {status, type, location, minPrice, maxPrice, minSqFt, maxSqFt, bedroomCount, bathroomCount, condition,area,state,subcity,furnishing} = await searchParams;
+  const {status, type, location, minPrice, maxPrice, minSqFt, maxSqFt, bedroomCount, bathroomCount, condition,area,state,subcity,furnishing, page = "1"} = await searchParams;
+
+  const ITEMS_PER_PAGE = 12;
+  const currentPage = parseInt(page) || 1;
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   const properties = await getProperties(
      100,
@@ -30,6 +35,11 @@ export default async function PropertiesPage({searchParams}: {searchParams: Prom
     furnishing
   }
   );
+
+  // Calculate pagination
+  const totalProperties = properties.length;
+  const totalPages = Math.ceil(totalProperties / ITEMS_PER_PAGE);
+  const paginatedProperties = properties.slice(offset, offset + ITEMS_PER_PAGE);
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col lg:flex-row">
       {/* Search Bar Component */}
@@ -66,8 +76,34 @@ export default async function PropertiesPage({searchParams}: {searchParams: Prom
        <>
          <div className="mb-6">
             <h1 className="text-3xl font-semibold text-gray-800 mb-4">Properties</h1>
-            <p className="text-gray-600 mb-5 ">Found {properties.length} properties matching your criteria.</p>
-            <PropertyContainer properties={properties} />
+            <p className="text-gray-600 mb-5 ">Found {totalProperties} properties matching your criteria.</p>
+            <PropertyContainer properties={paginatedProperties} />
+            
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="mt-8 flex justify-center">
+                <Pagination 
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  searchParams={{
+                    status,
+                    type,
+                    location,
+                    minPrice,
+                    maxPrice,
+                    minSqFt,
+                    maxSqFt,
+                    bedroomCount,
+                    bathroomCount,
+                    condition,
+                    area,
+                    state,
+                    subcity,
+                    furnishing
+                  }}
+                />
+              </div>
+            )}
         </div>
        </>
         )}

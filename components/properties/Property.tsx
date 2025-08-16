@@ -23,22 +23,17 @@ interface PropertyProps {
     size: number;
     price: number;
     views?: number;
+    created_at?: string;
   };
 }
 
 const Property = ({ property }: PropertyProps) => {
 
-  const [liked, setLiked] = useState<{ [key: string]: boolean }>({});
+  const [liked, setLiked] = useState<string[]>([]);
   const [isHovered, setIsHovered] = useState(false);
   const [showCopied, setShowCopied] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Debug logging to see what's in the property object
-  useEffect(() => {
-    console.log('Property object:', property);
-    console.log('Property price:', property.price);
-    console.log('Property price type:', typeof property.price);
-  }, [property]);
 
   useEffect(() => {
     const storedLikes = localStorage.getItem("likedProperties");
@@ -61,10 +56,12 @@ const Property = ({ property }: PropertyProps) => {
   }, [property.image_paths.length]);
 
   const toggleLike = (id: string) => {
-     const updated = {
-      ...liked,
-      [id]: !liked[id],
-    };
+     let updated: string[];
+     if(liked.includes(id)){
+      updated = liked.filter(item => item != id)
+     } else{
+      updated = [...liked,id]
+     }
     setLiked(updated);
     localStorage.setItem("likedProperties", JSON.stringify(updated));
   };
@@ -101,6 +98,37 @@ const Property = ({ property }: PropertyProps) => {
     return viewCount.toString()
   }
 
+  const getPostedTime = (createdAt: string) => {
+    if (!createdAt) return '';
+    
+    const now = new Date();
+    const created = new Date(createdAt);
+    const diffInMs = now.getTime() - created.getTime();
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+    
+    if (diffInDays > 0) {
+      if (diffInDays < 7) return `Posted ${diffInDays} day${diffInDays === 1 ? '' : 's'} ago`;
+      if (diffInDays < 30) {
+        const weeks = Math.floor(diffInDays / 7);
+        return `Posted ${weeks} week${weeks === 1 ? '' : 's'} ago`;
+      }
+      if (diffInDays < 365) {
+        const months = Math.floor(diffInDays / 30);
+        return `Posted ${months} month${months === 1 ? '' : 's'} ago`;
+      }
+      const years = Math.floor(diffInDays / 365);
+      return `Posted ${years} year${years === 1 ? '' : 's'} ago`;
+    } else if (diffInHours > 0) {
+      return `Posted ${diffInHours} hour${diffInHours === 1 ? '' : 's'} ago`;
+    } else if (diffInMinutes > 0) {
+      return `Posted ${diffInMinutes} minute${diffInMinutes === 1 ? '' : 's'} ago`;
+    } else {
+      return 'Just posted';
+    }
+  }
+
   return (
     <Link
       href={`/properties/${property.id}`}
@@ -132,7 +160,7 @@ const Property = ({ property }: PropertyProps) => {
         
         {/* Status Badge with Enhanced Design */}
         <span
-          className={`absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm transition-all duration-300 z-10 tracking-wide border-2 ${
+          className={`absolute top-4 left-4 px-4 py-2 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm transition-all duration-300 z-10 tracking-wide border-2 ${
             property.status.toLocaleLowerCase() === "sale"
               ? "bg-emerald-500 text-white border-emerald-400 shadow-emerald-200/50"
               : "bg-rose-500 text-white border-rose-400 shadow-rose-200/50"
@@ -145,7 +173,7 @@ const Property = ({ property }: PropertyProps) => {
         <div className="absolute top-4 right-4 z-10">
           <div className="flex items-center gap-2 px-3 py-2 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50">
             <FaEye className="text-blue-600 text-sm" />
-            <span className="text-sm font-bold text-gray-800">{formatViews(property.views!)}</span>
+            <span className="text-sm font-medium text-gray-800">{formatViews(property.views!)}</span>
           </div>
         </div>
 
@@ -165,9 +193,20 @@ const Property = ({ property }: PropertyProps) => {
           </div>
         )}
 
+        {/* Posted When Indicator */}
+        {property.created_at && (
+          <div className="absolute bottom-4 right-4 z-10">
+            <div className="px-4 py-2.5 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl border-2 border-blue-200">
+              <span className="text-sm font-semibold text-gray-800">
+                {getPostedTime(property.created_at)}
+              </span>
+            </div>
+          </div>
+        )}
+
         {/* View Property Overlay on Hover */}
         <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="bg-black/70 backdrop-blur-sm text-white px-6 py-3 rounded-2xl font-bold text-lg shadow-2xl border border-white/20">
+          <div className="bg-black/70 backdrop-blur-sm text-white px-6 py-3 rounded-2xl font-medium text-base sm:text-lg shadow-2xl border border-white/20">
             View Property
           </div>
         </div>
@@ -177,7 +216,7 @@ const Property = ({ property }: PropertyProps) => {
       <div className="h-[55%] p-4 flex flex-col justify-between">
         {/* Type Badge and Action Buttons */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wide">
+          <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wide">
             {property.type}
           </span>
           <div className="ml-auto flex gap-1.5">
@@ -192,9 +231,9 @@ const Property = ({ property }: PropertyProps) => {
             >
               <FaHeart
                 size={18}
-                color={liked[property.id] ? "#f43f5e" : "gray"}
+                color={liked.includes(property.id) ? "#f43f5e" : "gray"}
                 className={`transition-all duration-300 cursor-pointer ${
-                  liked[property.id] ? "scale-110 drop-shadow-lg" : "scale-100"
+                  liked.includes(property.id) ? "scale-110 drop-shadow-lg" : "scale-100"
                 }`}
               />
             </button>
@@ -220,14 +259,14 @@ const Property = ({ property }: PropertyProps) => {
         </div>
 
         {/* Enhanced Title */}
-        <h3 className="text-lg capitalize font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+        <h3 className="text-base sm:text-lg capitalize font-medium text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
           {DepricatedTiltle(property.title)}
         </h3>
 
         {/* Enhanced Location */}
         <p className="text-gray-600 text-sm capitalize mb-3 flex items-center gap-2">
           <PiMapPinAreaFill className="text-blue-600 text-base" />
-          <span className="font-medium">{property.location.area}, {property.location.state}</span>
+          <span className="font-normal">{property.location.area}, {property.location.state}</span>
         </p>
 
         {/* Enhanced Property Details */}
@@ -238,8 +277,8 @@ const Property = ({ property }: PropertyProps) => {
               <FaBed className="text-blue-600 text-sm" />
             </div>
             <div className="flex flex-col">
-              <span className="text-base font-bold text-gray-800">{property.beds}</span>
-              <span className="text-xs text-gray-500 font-medium">Beds</span>
+              <span className="text-base font-medium text-gray-800">{property.beds}</span>
+              <span className="text-xs text-gray-500 font-normal">Beds</span>
             </div>
           </div>
           
@@ -249,8 +288,8 @@ const Property = ({ property }: PropertyProps) => {
               <FaBath className="text-indigo-600 text-sm" />
             </div>
             <div className="flex flex-col">
-              <span className="text-base font-bold text-gray-800">{property.baths}</span>
-              <span className="text-xs text-gray-500 font-medium">Baths</span>
+              <span className="text-base font-medium text-gray-800">{property.baths}</span>
+              <span className="text-xs text-gray-500 font-normal">Baths</span>
             </div>
           </div>
           
@@ -260,8 +299,8 @@ const Property = ({ property }: PropertyProps) => {
               <LuLandPlot className="text-purple-600 text-sm" />
             </div>
             <div className="flex flex-col">
-              <span className="text-base font-bold text-gray-800">{property.size}</span>
-              <span className="text-xs text-gray-500 font-medium">sqm(m²)</span>
+              <span className="text-base font-medium text-gray-800">{property.size}</span>
+              <span className="text-xs text-gray-500 font-normal">sqm(m²)</span>
             </div>
           </div>
         </div>
@@ -270,29 +309,29 @@ const Property = ({ property }: PropertyProps) => {
         <div className="flex items-center justify-between pt-3 border-t border-gray-200">
           <div className="flex-1">
             <div className="mb-1">
-              <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">
+              <span className="text-xs text-gray-500 font-normal uppercase tracking-wide">
                 {property.status.toLowerCase() === "sale" ? "Price" : "Monthly Rent"}
               </span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-xs text-gray-400 font-medium">Br</span>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent text-blue-600">
+              <span className="text-xs text-gray-400 font-normal">Br</span>
+              <span className="text-xl sm:text-2xl font-medium bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent text-blue-600">
                 {property.price ? FormatPrice(property.price) : 'Contact Us'}
               </span>
               {property.status.toLowerCase() === "rent" && property.price && (
-                <span className="text-sm text-gray-500 font-medium">/month</span>
+                <span className="text-sm text-gray-500 font-normal">/month</span>
               )}
             </div>
             {property.status.toLowerCase() === "rent" && (
               <div className="mt-1">
-                <span className="text-xs text-emerald-600 font-medium bg-emerald-50 px-2 py-1 rounded-full">
+                <span className="text-xs text-emerald-600 font-normal bg-emerald-50 px-2 py-1 rounded-full">
                   Available Now
                 </span>
               </div>
             )}
             {property.status.toLowerCase() === "sale" && (
               <div className="mt-1">
-                <span className="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded-full">
+                <span className="text-xs text-blue-600 font-normal bg-blue-50 px-2 py-1 rounded-full">
                   Ready to Move In
                 </span>
               </div>
@@ -300,7 +339,7 @@ const Property = ({ property }: PropertyProps) => {
           </div>
           
           <div className="ml-3">
-            <div className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl text-xs transition-all duration-300 transform hover:scale-105 active:scale-95 border border-blue-500/20">
+            <div className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-medium rounded-xl shadow-lg hover:shadow-xl text-xs transition-all duration-300 transform hover:scale-105 active:scale-95 border border-blue-500/20">
               View Details
             </div>
           </div>

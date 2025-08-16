@@ -104,18 +104,20 @@ const PropertyContact = ({ postedBy,propertyId }: Props) => {
     <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
       {/* Agent Information */}
       <div className="mb-6">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">Contact Agent</h3>
+        <h3 className="text-lg sm:text-xl font-medium text-gray-800 mb-4">Contact Agent</h3>
         <div className="flex items-start gap-4 mb-4">
+        <div className='w-16 h-16 rounded-full flex justify-center items-center object-fill overflow-hidden'>
           <Image
             src={`${process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_PIC_URL}/agent-avater/${postedBy?.profilePic_path}`}
             alt={postedBy.name}
             width={80}
             height={80}
-            className="w-16 h-16 rounded-full object-cover"
+            className="w-full h-full  object-fit"
           />
+          </div>
           <div className="flex-1">
-            <span className='font-extrabold text-gray-900'>Agent</span>
-            <h3 className="font-bold text-gray-800">{postedBy.name}</h3>
+            <span className='font-medium text-gray-700'>Agent</span>
+            <h3 className="font-medium text-gray-800">{postedBy.name}</h3>
           </div>
         </div>
         
@@ -126,21 +128,21 @@ const PropertyContact = ({ postedBy,propertyId }: Props) => {
             className="flex items-center gap-3 p-3 bg-indigo-50 text-indigo-700 rounded-xl hover:bg-indigo-100 transition-colors duration-300"
           >
             <FaPhone className="text-indigo-500" />
-            <span className="font-medium">+{postedBy.phone_no || '25123456789'}</span>
+            <span className="font-normal">+{postedBy.phone_no || '25123456789'}</span>
           </Link>
           <Link
             href={`mailto:${postedBy.email || 'support@hulu-house.com'}`}
             className="flex items-center gap-3 p-3 bg-gray-50 text-gray-700 rounded-xl hover:bg-gray-100 transition-colors duration-300"
           >
             <FaEnvelope className="text-gray-500" />
-            <span className="font-medium">{postedBy.email || 'support@hulu-house.com'}</span>
+            <span className="font-normal">{postedBy.email || 'support@hulu-house.com'}</span>
           </Link>
         </div>
       </div>
 
       {/* Inquiry Form */}
       <div>
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">Send Inquiry</h3>
+        <h3 className="text-lg sm:text-xl font-medium text-gray-800 mb-4">Send Inquiry</h3>
         
         {/* Inline Message Display */}
         {inqMessage.message && (
@@ -166,7 +168,7 @@ const PropertyContact = ({ postedBy,propertyId }: Props) => {
                 )}
               </div>
               <div className="flex-1">
-                <p className={`text-sm font-medium ${
+                <p className={`text-sm font-normal ${
                   inqMessage.type === 'success' ? 'text-green-800' : 'text-red-800'
                 }`}>
                   {inqMessage.type === 'success' ? 'Success!' : 'Error'}
@@ -195,7 +197,7 @@ const PropertyContact = ({ postedBy,propertyId }: Props) => {
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="name" className="block text-sm font-normal text-gray-600 mb-2">
               Full Name <span className="text-red-500">*</span>
             </label>
             <input
@@ -211,7 +213,7 @@ const PropertyContact = ({ postedBy,propertyId }: Props) => {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-sm font-normal text-gray-600 mb-2">
               Email Address 
             </label>
             <input
@@ -226,7 +228,7 @@ const PropertyContact = ({ postedBy,propertyId }: Props) => {
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="phone" className="block text-sm font-normal text-gray-600 mb-2">
               Phone Number <span className="text-red-500">*</span>
             </label>
             <input
@@ -243,7 +245,7 @@ const PropertyContact = ({ postedBy,propertyId }: Props) => {
 
 
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="message" className="block text-sm font-normal text-gray-600 mb-2">
               Message
             </label>
             <textarea
@@ -260,7 +262,7 @@ const PropertyContact = ({ postedBy,propertyId }: Props) => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold py-4 rounded-xl hover:from-indigo-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium py-4 rounded-xl hover:from-indigo-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             {isSubmitting ? 'Sending...' : 'Send Inquiry'}
           </button>
