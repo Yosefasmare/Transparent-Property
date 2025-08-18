@@ -47,8 +47,8 @@ const Pagination = ({ currentPage, totalPages, searchParams }: PaginationProps) 
 
   const getVisiblePages = () => {
     const delta = 2
-    const range = []
-    const rangeWithDots = []
+    const range = [] as Array<number>
+    const rangeWithDots = [] as Array<number | string>
 
     for (let i = Math.max(2, currentPage - delta); i <= Math.min(totalPages - 1, currentPage + delta); i++) {
       range.push(i)
@@ -79,7 +79,7 @@ const Pagination = ({ currentPage, totalPages, searchParams }: PaginationProps) 
       {currentPage > 1 && (
         <Link
           href={buildUrl(currentPage - 1)}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors duration-200"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-600 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 hover:text-neutral-800 transition-colors duration-200"
         >
           <FaChevronLeft className="w-4 h-4" />
           Previous
@@ -91,14 +91,14 @@ const Pagination = ({ currentPage, totalPages, searchParams }: PaginationProps) 
         {getVisiblePages().map((page, index) => (
           <React.Fragment key={index}>
             {page === '...' ? (
-              <span className="px-3 py-2 text-gray-400">...</span>
+              <span className="px-3 py-2 text-neutral-400">...</span>
             ) : (
               <Link
                 href={buildUrl(page as number)}
                 className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
                   page === currentPage
-                    ? 'bg-indigo-600 text-white'
-                    : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+                    ? 'bg-primary-700 text-white'
+                    : 'text-neutral-600 bg-white border border-neutral-300 hover:bg-neutral-50 hover:text-neutral-800'
                 }`}
               >
                 {page}
@@ -112,7 +112,7 @@ const Pagination = ({ currentPage, totalPages, searchParams }: PaginationProps) 
       {currentPage < totalPages && (
         <Link
           href={buildUrl(currentPage + 1)}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors duration-200"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-600 bg-white border border-neutral-300 rounded-lg hover:bg-neutral-50 hover:text-neutral-800 transition-colors duration-200"
         >
           Next
           <FaChevronRight className="w-4 h-4" />

@@ -41,32 +41,32 @@ export default async function PropertiesPage({searchParams}: {searchParams: Prom
   const totalPages = Math.ceil(totalProperties / ITEMS_PER_PAGE);
   const paginatedProperties = properties.slice(offset, offset + ITEMS_PER_PAGE);
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col lg:flex-row">
+    <main className="min-h-screen bg-neutral-50 flex flex-col lg:flex-row">
       {/* Search Bar Component */}
       <CollapsibleSearchBar  />
 
       {/* Properties Content - Right side 80% width */}
-      <div className="w-full lg:w-[80%] bg-gray-50 p-4 md:p-6">
+      <div className="w-full lg:w-[80%] bg-neutral-50 p-4 md:p-6">
         {properties.length === 0 ? (
           <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
             <div className="mb-6">
-              <HiHome className="w-24 h-24 mx-auto text-gray-300" />
+              <HiHome className="w-24 h-24 mx-auto text-neutral-300" />
             </div>
-            <h2 className="text-2xl font-semibold text-gray-700 mb-3">No Properties Found</h2>
-            <p className="text-gray-500 mb-6 max-w-md">
+            <h2 className="text-2xl font-semibold text-neutral-700 mb-3">No Properties Found</h2>
+            <p className="text-neutral-600 mb-6 max-w-md">
               We couldn&apos;t find any properties matching your current search criteria. 
               Try adjusting your filters or browse our available properties.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/properties"
-                className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+                className="px-6 py-3 bg-primary-700 text-white rounded-lg font-medium hover:bg-primary-800 transition-colors"
               >
                 Clear All Filters
               </Link>
               <Link
                 href="/contact"
-                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                className="px-6 py-3 border border-neutral-300 text-neutral-700 rounded-lg font-medium hover:bg-neutral-50 transition-colors"
               >
                 Contact Us
               </Link>
@@ -75,8 +75,8 @@ export default async function PropertiesPage({searchParams}: {searchParams: Prom
         ) : (
        <>
          <div className="mb-6">
-            <h1 className="text-3xl font-semibold text-gray-800 mb-4">Properties</h1>
-            <p className="text-gray-600 mb-5 ">Found {totalProperties} properties matching your criteria.</p>
+            <h1 className="text-3xl font-semibold text-neutral-800 mb-4">Properties</h1>
+            <p className="text-neutral-600 mb-5 ">Found {totalProperties} properties matching your criteria.</p>
             <PropertyContainer properties={paginatedProperties} />
             
             {/* Pagination */}

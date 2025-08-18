@@ -82,38 +82,38 @@ const AboutPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-accent-50 to-secondary-50">
       {/* Hero Section */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm text-blue-600 font-medium mb-6 shadow-lg">
-            <span className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-sm text-accent-600 font-medium mb-6 shadow-lg">
+            <span className="w-2 h-2 bg-accent-600 rounded-full animate-pulse"></span>
             Since 2018 • Trusted by 5,000+ Clients
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold text-neutral-900 mb-8 leading-tight">
             We&apos;re Building the Future of
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-800 to-primary-700">
               Real Estate
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
+          <p className="text-xl md:text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-12">
             Combining cutting-edge technology with personalized service to make your home buying and selling journey 
-            <span className="font-semibold text-gray-800"> seamless, transparent, and enjoyable.</span>
+            <span className="font-semibold text-neutral-800"> seamless, transparent, and enjoyable.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/properties" 
-              className="group inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
+              className="group inline-flex items-center gap-3 bg-gradient-to-r from-primary-800 to-primary-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:from-primary-900 hover:to-primary-800 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
             >
               Explore Properties
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </Link>
             <a 
               href="/contact" 
-              className="group inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm text-gray-800 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl border border-gray-200"
+              className="group inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm text-neutral-800 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl border border-neutral-200"
             >
               Get in Touch
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
@@ -123,10 +123,10 @@ const AboutPage = () => {
 
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}></div>
-          <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
-          <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-green-200 to-blue-200 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '2s', animationDuration: '3.5s' }}></div>
-          <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '4.5s' }}></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-accent-200 to-primary-200 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}></div>
+          <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-secondary-200 to-secondary-300 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
+          <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-gradient-to-br from-emerald-200 to-accent-200 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '2s', animationDuration: '3.5s' }}></div>
+          <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-gradient-to-br from-secondary-100 to-secondary-300 rounded-full opacity-30 animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '4.5s' }}></div>
         </div>
       </section>
 
@@ -142,8 +142,8 @@ const AboutPage = () => {
               >
                 <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/20">
                   <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
-                  <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">{stat.number}</div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
+                  <div className="text-3xl md:text-4xl font-bold text-neutral-900 mb-2 group-hover:text-accent-600 transition-colors duration-300">{stat.number}</div>
+                  <div className="text-neutral-600 font-medium">{stat.label}</div>
                 </div>
               </div>
             ))}
@@ -155,10 +155,10 @@ const AboutPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
               What We Do
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
               We&apos;re not just another real estate platform. W&apos;re your trusted partner in finding the perfect home.
             </p>
           </div>
@@ -170,10 +170,10 @@ const AboutPage = () => {
                 className="group text-center"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-gray-100">
+                <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-neutral-100">
                   <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">{service.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                  <h3 className="text-xl font-bold text-neutral-900 mb-4 group-hover:text-accent-600 transition-colors duration-300">{service.title}</h3>
+                  <p className="text-neutral-600 leading-relaxed">{service.description}</p>
                 </div>
               </div>
             ))}
@@ -185,10 +185,10 @@ const AboutPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
               Why Choose Hulu House?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
               We combine innovation, trust, and excellence to deliver an unmatched real estate experience.
             </p>
           </div>
@@ -197,14 +197,14 @@ const AboutPage = () => {
             {whyChooseUs.map((reason, index) => (
               <div 
                 key={index} 
-                className="group bg-gradient-to-br from-white to-blue-50 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-blue-100"
+                className="group bg-gradient-to-br from-white to-primary-50 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-primary-100"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-start gap-6">
                   <div className="text-4xl group-hover:scale-110 transition-transform duration-300">{reason.icon}</div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">{reason.title}</h3>
-                    <p className="text-gray-600 leading-relaxed text-lg">{reason.description}</p>
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-4 group-hover:text-accent-600 transition-colors duration-300">{reason.title}</h3>
+                    <p className="text-neutral-600 leading-relaxed text-lg">{reason.description}</p>
                   </div>
                 </div>
               </div>
@@ -217,10 +217,10 @@ const AboutPage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
               Meet Our Leadership
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
               The passionate team behind Hulu House&apos;s success story.
             </p>
           </div>
@@ -232,14 +232,14 @@ const AboutPage = () => {
                 className="group text-center"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-gray-100">
-                  <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center text-5xl text-blue-600 group-hover:from-blue-200 group-hover:to-indigo-200 transition-all duration-300 group-hover:scale-110">
+                <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-neutral-100">
+                  <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-accent-50 to-primary-50 rounded-full flex items-center justify-center text-5xl text-accent-600 group-hover:from-accent-100 group-hover:to-primary-100 transition-all duration-300 group-hover:scale-110">
                     👤
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">{member.name}</h3>
-                  <p className="text-blue-600 font-semibold text-lg mb-2">{member.role}</p>
-                  <p className="text-gray-500 mb-4">{member.experience} experience</p>
-                  <p className="text-gray-600 leading-relaxed">{member.bio}</p>
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-2 group-hover:text-accent-600 transition-colors duration-300">{member.name}</h3>
+                  <p className="text-accent-600 font-semibold text-lg mb-2">{member.role}</p>
+                  <p className="text-neutral-500 mb-4">{member.experience} experience</p>
+                  <p className="text-neutral-600 leading-relaxed">{member.bio}</p>
                 </div>
               </div>
             ))}
@@ -250,7 +250,7 @@ const AboutPage = () => {
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-3xl p-12 text-center text-white relative overflow-hidden">
+          <div className="bg-gradient-to-r from-primary-800 to-primary-700 rounded-3xl p-12 text-center text-white relative overflow-hidden">
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-32 -translate-y-32"></div>
@@ -268,14 +268,14 @@ const AboutPage = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/properties" 
-                  className="group inline-flex items-center gap-3 bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl transform"
+                  className="group inline-flex items-center gap-3 bg-white text-primary-800 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-neutral-100 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl transform"
                 >
                   Browse Properties
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </Link>
                 <a 
                   href="/contact" 
-                  className="group inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-blue-600 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl transform"
+                  className="group inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-primary-800 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl transform"
                 >
                   Contact Us
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>

@@ -66,6 +66,16 @@ const Property = ({ property }: PropertyProps) => {
     localStorage.setItem("likedProperties", JSON.stringify(updated));
   };
 
+  const formatPrice = (price: number) => {
+    if (price >= 1000000) {
+      return `Br ${(price / 1000000).toFixed(1)}M`;
+    } else if (price >= 1000) {
+      return `Br ${(price / 1000).toFixed(0)}K`;
+    }
+    return `Br ${price.toLocaleString()}`;
+  };
+
+
   const handleShare = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -81,9 +91,6 @@ const Property = ({ property }: PropertyProps) => {
     }
   };
 
-  const FormatPrice = (price: number) =>{
-    return new Intl.NumberFormat('en-US').format(price);
-  }
   
   const DepricatedTiltle = (title: string) => {
     return title.length > 30 ? `${title.slice(0, 30)}...` : title;
@@ -132,7 +139,7 @@ const Property = ({ property }: PropertyProps) => {
   return (
     <Link
       href={`/properties/${property.id}`}
-      className="group relative flex flex-col bg-white h-[540px] w-[380px] rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-blue-200 transform hover:-translate-y-3 cursor-pointer"
+      className="group relative flex flex-col bg-white h-[540px] w-[380px] rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-neutral-100 hover:border-accent-200 transform hover:-translate-y-3 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -171,9 +178,9 @@ const Property = ({ property }: PropertyProps) => {
 
         {/* Enhanced Views Counter */}
         <div className="absolute top-4 right-4 z-10">
-          <div className="flex items-center gap-2 px-3 py-2 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50">
-            <FaEye className="text-blue-600 text-sm" />
-            <span className="text-sm font-medium text-gray-800">{formatViews(property.views!)}</span>
+          <div className="flex items-center gap-2 px-3 py-2 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-neutral-200/50">
+            <FaEye className="text-accent-600 text-sm" />
+            <span className="text-sm font-medium text-neutral-800">{formatViews(property.views!)}</span>
           </div>
         </div>
 
@@ -196,8 +203,8 @@ const Property = ({ property }: PropertyProps) => {
         {/* Posted When Indicator */}
         {property.created_at && (
           <div className="absolute bottom-4 right-4 z-10">
-            <div className="px-4 py-2.5 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl border-2 border-blue-200">
-              <span className="text-sm font-semibold text-gray-800">
+            <div className="px-4 py-2.5 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl border-2 border-accent-200">
+              <span className="text-sm font-semibold text-neutral-800">
                 {getPostedTime(property.created_at)}
               </span>
             </div>
@@ -216,7 +223,7 @@ const Property = ({ property }: PropertyProps) => {
       <div className="h-[55%] p-4 flex flex-col justify-between">
         {/* Type Badge and Action Buttons */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wide">
+          <span className="bg-gradient-to-r from-primary-800 to-primary-700 text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wide">
             {property.type}
           </span>
           <div className="ml-auto flex gap-1.5">
@@ -238,7 +245,7 @@ const Property = ({ property }: PropertyProps) => {
               />
             </button>
             <button
-              className="relative p-2.5 bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 text-blue-500 hover:text-blue-600 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110 active:scale-95 border border-blue-200 hover:border-blue-300"
+              className="relative p-2.5 bg-gradient-to-r from-accent-50 to-accent-100 hover:from-accent-100 hover:to-accent-200 text-accent-600 hover:text-accent-700 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-110 active:scale-95 border border-accent-200 hover:border-accent-300"
               aria-label="Share property"
               type="button"
               onClick={handleShare}
@@ -259,79 +266,79 @@ const Property = ({ property }: PropertyProps) => {
         </div>
 
         {/* Enhanced Title */}
-        <h3 className="text-base sm:text-lg capitalize font-medium text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+        <h3 className="text-base sm:text-lg capitalize font-medium text-neutral-900 mb-2 group-hover:text-accent-600 transition-colors duration-300 leading-tight">
           {DepricatedTiltle(property.title)}
         </h3>
 
         {/* Enhanced Location */}
-        <p className="text-gray-600 text-sm capitalize mb-3 flex items-center gap-2">
-          <PiMapPinAreaFill className="text-blue-600 text-base" />
+        <p className="text-neutral-600 text-sm capitalize mb-3 flex items-center gap-2">
+          <PiMapPinAreaFill className="text-primary-700 text-base" />
           <span className="font-normal">{property.location.area}, {property.location.state}</span>
         </p>
 
         {/* Enhanced Property Details */}
-        <div className="flex items-center justify-between mb-4 p-3 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl border border-gray-100">
+        <div className="flex items-center justify-between mb-4 p-3 bg-gradient-to-r from-neutral-50 to-primary-50 rounded-xl border border-neutral-100">
           {/* Beds */}
           <div className="flex items-center gap-2">
-            <div className="p-1.5 bg-blue-100 rounded-full">
-              <FaBed className="text-blue-600 text-sm" />
+            <div className="p-1.5 bg-accent-100 rounded-full">
+              <FaBed className="text-accent-600 text-sm" />
             </div>
             <div className="flex flex-col">
-              <span className="text-base font-medium text-gray-800">{property.beds}</span>
-              <span className="text-xs text-gray-500 font-normal">Beds</span>
+              <span className="text-base font-medium text-neutral-800">{property.beds}</span>
+              <span className="text-xs text-neutral-500 font-normal">Beds</span>
             </div>
           </div>
           
           {/* Baths */}
           <div className="flex items-center gap-2">
-            <div className="p-1.5 bg-indigo-100 rounded-full">
-              <FaBath className="text-indigo-600 text-sm" />
+            <div className="p-1.5 bg-primary-100 rounded-full">
+              <FaBath className="text-primary-700 text-sm" />
             </div>
             <div className="flex flex-col">
-              <span className="text-base font-medium text-gray-800">{property.baths}</span>
-              <span className="text-xs text-gray-500 font-normal">Baths</span>
+              <span className="text-base font-medium text-neutral-800">{property.baths}</span>
+              <span className="text-xs text-neutral-500 font-normal">Baths</span>
             </div>
           </div>
           
           {/* Size */}
           <div className="flex items-center gap-2">
-            <div className="p-1.5 bg-purple-100 rounded-full">
-              <LuLandPlot className="text-purple-600 text-sm" />
+            <div className="p-1.5 bg-secondary-100 rounded-full">
+              <LuLandPlot className="text-secondary-600 text-sm" />
             </div>
             <div className="flex flex-col">
-              <span className="text-base font-medium text-gray-800">{property.size}</span>
-              <span className="text-xs text-gray-500 font-normal">sqm(m²)</span>
+              <span className="text-base font-medium text-neutral-800">{property.size}</span>
+              <span className="text-xs text-neutral-500 font-normal">sqm(m²)</span>
             </div>
           </div>
         </div>
 
         {/* Enhanced Price and CTA */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-200">
+        <div className="flex items-center justify-between pt-3 border-t border-neutral-200">
           <div className="flex-1">
             <div className="mb-1">
-              <span className="text-xs text-gray-500 font-normal uppercase tracking-wide">
+              <span className="text-xs text-neutral-500 font-normal uppercase tracking-wide">
                 {property.status.toLowerCase() === "sale" ? "Price" : "Monthly Rent"}
               </span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-xs text-gray-400 font-normal">Br</span>
-              <span className="text-xl sm:text-2xl font-medium bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent text-blue-600">
-                {property.price ? FormatPrice(property.price) : 'Contact Us'}
+              <span className="text-xs text-neutral-400 font-normal">Br</span>
+              <span className="text-xl sm:text-2xl font-medium bg-gradient-to-r from-primary-800 to-primary-700 bg-clip-text text-transparent">
+                {property.price ? formatPrice(property.price) : 'Contact Us'}
               </span>
               {property.status.toLowerCase() === "rent" && property.price && (
-                <span className="text-sm text-gray-500 font-normal">/month</span>
+                <span className="text-sm text-neutral-500 font-normal">/month</span>
               )}
             </div>
             {property.status.toLowerCase() === "rent" && (
               <div className="mt-1">
-                <span className="text-xs text-emerald-600 font-normal bg-emerald-50 px-2 py-1 rounded-full">
+                <span className="text-xs text-emerald-700 font-normal bg-emerald-50 px-2 py-1 rounded-full">
                   Available Now
                 </span>
               </div>
             )}
             {property.status.toLowerCase() === "sale" && (
               <div className="mt-1">
-                <span className="text-xs text-blue-600 font-normal bg-blue-50 px-2 py-1 rounded-full">
+                <span className="text-xs text-accent-600 font-normal bg-accent-50 px-2 py-1 rounded-full">
                   Ready to Move In
                 </span>
               </div>
@@ -339,7 +346,7 @@ const Property = ({ property }: PropertyProps) => {
           </div>
           
           <div className="ml-3">
-            <div className="px-4 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-medium rounded-xl shadow-lg hover:shadow-xl text-xs transition-all duration-300 transform hover:scale-105 active:scale-95 border border-blue-500/20">
+            <div className="px-4 py-2.5 bg-gradient-to-r from-primary-800 to-primary-700 hover:from-primary-900 hover:to-primary-800 text-white font-medium rounded-xl shadow-lg hover:shadow-xl text-xs transition-all duration-300 transform hover:scale-105 active:scale-95 border border-primary-700/20">
               View Details
             </div>
           </div>
@@ -347,7 +354,7 @@ const Property = ({ property }: PropertyProps) => {
       </div>
 
       {/* Hover Effect Border */}
-      <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-blue-300/30 transition-all duration-500 pointer-events-none" />
+      <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-primary-700/20 transition-all duration-500 pointer-events-none" />
     </Link>
   )
 }

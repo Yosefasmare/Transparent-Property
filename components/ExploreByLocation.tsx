@@ -56,14 +56,14 @@ export default function ExploreByLocation() {
 
   if (isLoading) {
     return (
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50" id="explore">
+      <section className="py-20 bg-gradient-to-br from-neutral-50 via-primary-50 to-secondary-50" id="explore">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-gray-800 mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-neutral-800 mb-6 tracking-tight">
               Explore by Location
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed">
               Discover amazing properties in the most sought-after locations across the city
             </p>
           </div>
@@ -71,8 +71,8 @@ export default function ExploreByLocation() {
           {/* Loading State */}
           <div className="flex justify-center items-center py-20">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-gray-600 text-base sm:text-lg font-normal">Loading locations...</p>
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary-600 mx-auto mb-4"></div>
+              <p className="text-neutral-600 text-base sm:text-lg font-normal">Loading locations...</p>
             </div>
           </div>
         </div>
@@ -81,14 +81,14 @@ export default function ExploreByLocation() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50" id="explore">
+    <section className="py-20 bg-gradient-to-br from-neutral-50 via-primary-50 to-secondary-50" id="explore">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section with Search */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-gray-800 mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-neutral-800 mb-6 tracking-tight">
             Explore by Location
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed mb-8">
             Discover amazing properties in the most sought-after locations across the city
           </p>
           
@@ -96,18 +96,18 @@ export default function ExploreByLocation() {
           <div className="max-w-md mx-auto">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <HiOutlineSearch className="h-5 w-5 text-gray-400" />
+                <HiOutlineSearch className="h-5 w-5 text-neutral-400" />
               </div>
               <input
                 type="text"
                 placeholder="Search by area, state, city, or location name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="block w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500 transition-all duration-200 shadow-sm"
+                className="block w-full pl-12 pr-4 py-3 border border-neutral-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent text-neutral-900 placeholder-neutral-500 transition-all duration-200 shadow-sm"
               />
             </div>
             {searchTerm && (
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-neutral-500 mt-2">
                 {filteredLocations.length} of {locations.length} locations found
               </p>
             )}
@@ -125,7 +125,7 @@ export default function ExploreByLocation() {
         <div className="text-center mt-16">
           <Link
           href={'/locations'}
-          className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          className="inline-flex items-center gap-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-medium px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
             <span>View All Locations</span>
             <HiOutlineArrowRight className="w-5 h-5" />
           </Link>

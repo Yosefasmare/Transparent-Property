@@ -98,10 +98,10 @@ export default function CollapsibleSearchBar() {
   return (
     <>
       {/* Mobile Search Toggle Button */}
-      <div className="lg:hidden bg-white border-b border-gray-200 p-4">
+      <div className="lg:hidden bg-white border-b border-neutral-200 p-4">
         <button
           onClick={() => setIsSearchOpen(!isSearchOpen)}
-          className="w-full flex items-center justify-between px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
+          className="w-full flex items-center justify-between px-4 py-2 bg-primary-700 text-white rounded-lg font-medium hover:bg-primary-800 transition-colors"
         >
           <span>{isSearchOpen ? 'Hide Filters' : 'Show Filters'}</span>
           <svg
@@ -117,23 +117,23 @@ export default function CollapsibleSearchBar() {
 
       {/* Search Bar - Collapsible on mobile, fixed on desktop */}
       <div className={`
-        w-full lg:w-[20%] bg-white border-r border-gray-200 
+        w-full lg:w-[20%] bg-white border-r border-neutral-200 
         lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto
         ${isSearchOpen ? 'block' : 'hidden lg:block'}
         transition-all duration-300 ease-in-out
       `}>
         <div className="p-4 md:p-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center lg:text-left">Browse Properties</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-neutral-800 mb-6 text-center lg:text-left">Browse Properties</h1>
           <form onSubmit={(e)=>{
             e.preventDefault();
             handleSearch();
           }} className="flex flex-col gap-4">
-            <h2 className="text-lg font-semibold text-gray-700 mb-2">Filter Properties</h2>
+            <h2 className="text-lg font-semibold text-neutral-700 mb-2">Filter Properties</h2>
             
             {/* Property Type */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
-              <select onChange={e=>setPropertyType(e.target.value)} value={propertyType} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700">
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Property Type</label>
+              <select onChange={e=>setPropertyType(e.target.value)} value={propertyType} className="w-full px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700">
                 <option value="">All Types</option>
                 {propertyTypes.map((type) => (
                   <option  key={type} value={type.toLocaleLowerCase()}>{type}</option>
@@ -142,8 +142,8 @@ export default function CollapsibleSearchBar() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Conditions</label>
-              <select onChange={e=>setCondition(e.target.value)} value={condition} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700">
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Conditions</label>
+              <select onChange={e=>setCondition(e.target.value)} value={condition} className="w-full px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700">
                 <option value="">All</option>
                 {propertyConditions.map((condition) => (
                   <option key={condition} value={condition.toLocaleLowerCase()}>{condition}</option>
@@ -151,8 +151,8 @@ export default function CollapsibleSearchBar() {
               </select>
             </div>
              <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Furnishing</label>
-              <select onChange={e=>setFurnishing(e.target.value)} value={furnishing} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700">
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Furnishing</label>
+              <select onChange={e=>setFurnishing(e.target.value)} value={furnishing} className="w-full px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700">
                 <option value="">All</option>
                 {PropertyFurnishing.map((furnish) => (
                   <option key={furnish} value={furnish.toLocaleLowerCase()}>{furnish}</option>
@@ -162,8 +162,8 @@ export default function CollapsibleSearchBar() {
 
             {/* Property Status */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-              <select onChange={e=>setStatus(e.target.value)} value={status} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700">
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Status</label>
+              <select onChange={e=>setStatus(e.target.value)} value={status} className="w-full px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700">
                 <option value="All">All</option>
                 {propertyStatus.map((status) => (
                   <option key={status} value={status.toLocaleLowerCase()}>For {status}</option>
@@ -173,26 +173,26 @@ export default function CollapsibleSearchBar() {
 
             {/* Location */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Location</label>
               <input
                 type="text"
                 value={location}
                 onChange={(e) => setLocation(e.target.value.toLocaleLowerCase())}
                 placeholder="e.g., Addis Ababa, Bole"
-                className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700"
+                className="w-full px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700"
               />
             </div>
 
             {/* Price Range */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Price Range</label>
               <div className="flex gap-2">
                 <input
                   type="number"
                   placeholder="Min Price"
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
-                  className="w-1/2 px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700"
+                  className="w-1/2 px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700"
                   min={0}
                 />
                 <input
@@ -200,7 +200,7 @@ export default function CollapsibleSearchBar() {
                   placeholder="Max Price"
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
-                  className="w-1/2 px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700"
+                  className="w-1/2 px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700"
                   min={0}
                 />
               </div>
@@ -208,8 +208,8 @@ export default function CollapsibleSearchBar() {
 
             {/* Bedrooms */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Bedrooms</label>
-              <select onChange={e => setBedroomCount(e.target.value)} value={bedroomCount} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700">
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Bedrooms</label>
+              <select onChange={e => setBedroomCount(e.target.value)} value={bedroomCount} className="w-full px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700">
                 <option value="">Any</option>
                 {bedrooms.map((b) => (
                   <option key={b} value={b}>{b}+</option>
@@ -219,8 +219,8 @@ export default function CollapsibleSearchBar() {
 
             {/* Bathrooms */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Bathrooms</label>
-              <select onChange={e => setBathroomCount(e.target.value)} value={bathroomCount} className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700">
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Bathrooms</label>
+              <select onChange={e => setBathroomCount(e.target.value)} value={bathroomCount} className="w-full px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700">
                 <option value="">Any</option>
                 {bathrooms.map((b) => (
                   <option key={b} value={b}>{b}+</option>
@@ -230,14 +230,14 @@ export default function CollapsibleSearchBar() {
 
             {/* Square Footage */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Square Footage</label>
+              <label className="block text-sm font-medium text-neutral-700 mb-1">Square Footage</label>
               <div className="flex gap-2">
                 <input
                   type="number"
                   placeholder="Min sq ft"
                   value={minSqFt}
                   onChange={(e) => setMinSqFt(e.target.value)}
-                  className="w-1/2 px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700"
+                  className="w-1/2 px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700"
                   min={0}
                 />
                 <input
@@ -245,7 +245,7 @@ export default function CollapsibleSearchBar() {
                   placeholder="Max sq ft"
                   value={maxSqFt}
                   onChange={(e) => setMaxSqFt(e.target.value)}
-                  className="w-1/2 px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 text-gray-700"
+                  className="w-1/2 px-3 py-2 rounded-md border border-neutral-300 focus:ring-2 focus:ring-primary-700 text-neutral-700"
                   min={0}
                 />
               </div>
@@ -255,7 +255,7 @@ export default function CollapsibleSearchBar() {
             <button
               type="submit"
               disabled={loading}
-              className={`px-6 cursor-pointer py-3 rounded-md ${loading ? "bg-indigo-400/60" : "bg-indigo-600  hover:bg-indigo-700"} text-white font-semibold shadow transition-colors mt-4`}
+              className={`px-6 cursor-pointer py-3 rounded-md ${loading ? "bg-primary-700/60" : "bg-primary-700 hover:bg-primary-800"} text-white font-semibold shadow transition-colors mt-4`}
             >
               {loading ? "Searching..." : "Search Properties"}
             </button>
@@ -263,7 +263,7 @@ export default function CollapsibleSearchBar() {
             {/* Clear Filters */}
             <button
               type="button"
-              className="px-6 py-2 rounded-md border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+              className="px-6 py-2 rounded-md border border-neutral-300 text-neutral-700 font-medium hover:bg-neutral-50 transition-colors"
             >
               Clear Filters
             </button>

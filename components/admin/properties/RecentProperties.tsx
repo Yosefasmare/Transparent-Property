@@ -1,7 +1,7 @@
 import useStore from '@/lib/store'
 import React from 'react'
-import { FaEdit, FaHome } from 'react-icons/fa'
-import { FaTrash } from 'react-icons/fa6'
+import {  FaHome } from 'react-icons/fa'
+
 
 const RecentProperties = () => {
 
@@ -29,14 +29,6 @@ const RecentProperties = () => {
                           {property.status || 'pending'}
                         </span>
                       </div>
-                    </div>
-                    <div className="flex space-x-2">
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
-                        <FaEdit className="w-4 h-4" />
-                      </button>
-                      <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
-                        <FaTrash className="w-4 h-4" />
-                      </button>
                     </div>
                   </div>
                 ))

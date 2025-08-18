@@ -23,6 +23,8 @@ const nextConfig: NextConfig = {
   
   // Image optimization
   images: {
+    deviceSizes: [320, 640, 1080, 1600],
+  imageSizes: [16, 32, 48, 64, 96],
     remotePatterns: [
       {
         protocol: 'https',

@@ -71,19 +71,19 @@ const PropertyAmenities = ({ PropertyAmenities, AdditionalInfo }: Props) => {
     return (
       <div className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-300 ${
         available 
-          ? 'bg-green-50 text-green-700 border border-green-200' 
-          : 'bg-gray-50 text-gray-400 border border-gray-200'
+          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
+          : 'bg-neutral-50 text-neutral-400 border border-neutral-200'
       }`}>
         <IconComponent className={`w-5 h-5 ${
-          available ? 'text-green-500' : 'text-gray-400'
+          available ? 'text-emerald-600' : 'text-neutral-400'
         }`} />
         <span className={`font-normal ${
-          available ? 'text-green-700' : 'text-gray-400'
+          available ? 'text-emerald-700' : 'text-neutral-400'
         }`}>
           {name}
         </span>
         {!available && (
-          <span className="text-xs bg-gray-200 text-gray-500 px-2 py-1 rounded-full ml-auto">
+          <span className="text-xs bg-neutral-200 text-neutral-500 px-2 py-1 rounded-full ml-auto">
             Not Available
           </span>
         )}
@@ -93,13 +93,13 @@ const PropertyAmenities = ({ PropertyAmenities, AdditionalInfo }: Props) => {
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
-      <h3 className="text-xl sm:text-2xl font-medium text-gray-800 mb-6">Amenities & Features</h3>
+      <h3 className="text-xl sm:text-2xl font-medium text-neutral-800 mb-6">Amenities & Features</h3>
       
       <div className="space-y-8">
         {/* Essential Amenities */}
         <div>
-          <h4 className="text-base sm:text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
-            <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
+          <h4 className="text-base sm:text-lg font-medium text-neutral-800 mb-4 flex items-center gap-2">
+            <div className="w-2 h-2 bg-accent-600 rounded-full"></div>
             Essential Amenities
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -116,8 +116,8 @@ const PropertyAmenities = ({ PropertyAmenities, AdditionalInfo }: Props) => {
 
         {/* Outdoor Amenities */}
         <div>
-          <h4 className="text-base sm:text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+          <h4 className="text-base sm:text-lg font-medium text-neutral-800 mb-4 flex items-center gap-2">
+            <div className="w-2 h-2 bg-secondary-500 rounded-full"></div>
             Outdoor & Recreation
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -135,9 +135,9 @@ const PropertyAmenities = ({ PropertyAmenities, AdditionalInfo }: Props) => {
       </div>
 
       {/* Additional Information */}
-      <div className="mt-8 p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl">
-        <h4 className="text-base sm:text-lg font-medium text-gray-800 mb-3">Additional Information</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm capitalize text-gray-600">
+      <div className="mt-8 p-6 bg-gradient-to-r from-neutral-50 to-primary-50 rounded-xl">
+        <h4 className="text-base sm:text-lg font-medium text-neutral-800 mb-3">Additional Information</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm capitalize text-neutral-600">
           <div>
             <span className="font-normal">Property Type:</span> {AdditionalInfo.type}
           </div>

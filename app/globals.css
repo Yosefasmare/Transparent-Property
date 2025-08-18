@@ -1,6 +1,106 @@
 /* Optimized CSS imports - only load what's needed */
 @import "tailwindcss";
 
+@theme {
+  /* Primary (Trustworthy Deep Navy) */
+  --color-primary-50: #f2f5f9;
+  --color-primary-100: #e6ebf3;
+  --color-primary-200: #c9d3e3;
+  --color-primary-300: #aab9d0;
+  --color-primary-400: #7d93b4;
+  --color-primary-500: #506d98;
+  --color-primary-600: #35557f;
+  --color-primary-700: #1B365D; /* provided */
+  --color-primary-800: #142949;
+  --color-primary-900: #0d1c33;
+  --color-primary-950: #091426;
+
+  /* Secondary (Premium Gold) */
+  --color-secondary-50: #fff7e0;
+  --color-secondary-100: #fcefc2;
+  --color-secondary-200: #f8e39a;
+  --color-secondary-300: #f2d66e;
+  --color-secondary-400: #ebc446;
+  --color-secondary-500: #D4AF37; /* provided */
+  --color-secondary-600: #b8912b;
+  --color-secondary-700: #8f6e1f;
+  --color-secondary-800: #6b5117;
+  --color-secondary-900: #4a390f;
+  --color-secondary-950: #2f240a;
+
+  /* Accent (Bright Blue) */
+  --color-accent-50: #eff6ff;
+  --color-accent-100: #dbeafe;
+  --color-accent-200: #bfdbfe;
+  --color-accent-300: #93c5fd;
+  --color-accent-400: #60a5fa;
+  --color-accent-500: #3b82f6;
+  --color-accent-600: #2563EB; /* provided */
+  --color-accent-700: #1d4ed8;
+  --color-accent-800: #1e40af;
+  --color-accent-900: #1e3a8a;
+  --color-accent-950: #172554;
+
+  /* Background and Surface */
+  --color-background: #F9FAFB; /* provided */
+  --color-surface: #ffffff;
+
+  /* Neutral text (Cool Gray) override) */
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151; /* provided */
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+}
+
+/* Premium Color Theme - Trustworthy & Professional */
+:root {
+  /* Keeping extended semantic tokens for potential custom CSS usage */
+  /* Success Colors - Trust & Reliability */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+  --color-success-950: #052e16;
+
+  /* Warning Colors - Professional Alerts */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  --color-warning-950: #451a03;
+
+  /* Error Colors - Professional Error States */
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+  --color-error-950: #450a0a;
+}
+
 /* Critical CSS - inline for faster rendering */
 html {
   scroll-behavior: smooth;
@@ -10,6 +110,8 @@ html {
 body {
   overflow-x: hidden;
   font-display: swap;
+  background-color: var(--color-background);
+  color: var(--color-neutral-700);
 }
 
 /* Consolidated animations with reduced complexity */

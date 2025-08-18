@@ -275,7 +275,7 @@ const AccountSetting = () => {
                   Profile Picture
                 </label>
                 <div className="flex flex-col lg:flex-row items-center gap-4">
-                  <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-200">
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center  overflow-hidden bg-gray-200">
                     {previewUrl ? (
                       <Image
                         src={previewUrl}
@@ -289,8 +289,8 @@ const AccountSetting = () => {
                         src={profilePic_url}
                         alt="Profile"
                         className="w-full h-full object-cover"
-                        width={80}
-                        height={80}
+                        width={20}
+                        height={20}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">

@@ -9,7 +9,7 @@ export default function Hero() {
     <section className="relative w-full min-h-[60vh] flex items-center justify-center bg-gray-100 overflow-hidden">
       {/* Optimized LCP Image */}
       <Image
-        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80"
+        src={`${process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_PIC_URL}/public_pic/banner.webp`}
         alt="Find Your Dream Home"
         fill
         priority
