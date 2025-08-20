@@ -242,7 +242,7 @@ const AgentsList = () => {
             ? 'bg-green-50 border-green-400' 
             : 'bg-red-50 border-red-400'
         }`}>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-3">
               <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
                 message.type === 'success' 
@@ -297,17 +297,17 @@ const AgentsList = () => {
           </div>
 
           {/* Filters */}
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2 sm:items-center">
             <select 
               value={roleFilter}
               onChange={(e) => setRoleFilter(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full sm:w-auto px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             >
               <option value="">All Roles</option>
               <option value="manager">Managers</option>
               <option value="agent">Agents</option>
             </select>
-            <label className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">
+            <label className="w-full sm:w-auto flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">
               <input
                 type="checkbox"
                 checked={showDeactivated}
@@ -323,7 +323,7 @@ const AgentsList = () => {
       {/* Content Area */}
       {!stateLoader && agents.length > 0 && (
         <div className="px-6 py-3 bg-gray-50 border-b border-gray-200">
-          <div className="flex items-center gap-6 text-sm text-gray-600">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-sm text-gray-600">
             <span>Total: <span className="font-medium text-gray-900">{agents.length}</span></span>
             <span>Active: <span className="font-medium text-green-600">{agents.filter(a => a.is_active).length}</span></span>
             <span>Deactivated: <span className="font-medium text-red-600">{agents.filter(a => !a.is_active).length}</span></span>
@@ -363,9 +363,9 @@ const AgentsList = () => {
           )}
         </div>
       ) : (
-        // Agents Table
+        // Agents Table (desktop)
         <>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto hidden md:block">
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
@@ -516,9 +516,120 @@ const AgentsList = () => {
             </table>
           </div>
 
+          {/* Agents List (mobile) */}
+          <div className="md:hidden">
+            <div className="divide-y divide-gray-200">
+              {filteredAgents.map((agent) => (
+                <div key={agent.id} className={`p-4 ${!agent.is_active ? 'bg-gray-50 opacity-75' : 'bg-white'}`}>
+                  <div className="flex items-center">
+                    <div className={`${!agent.is_active ? 'bg-gray-200' : 'bg-indigo-100'} w-12 h-12 rounded-full flex items-center justify-center overflow-hidden`}>
+                      {agent.profilePic_path ? (
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_PIC_URL}/agent-avater/${agent?.profilePic_path}`}
+                          alt={agent.name}
+                          width={48}
+                          height={48}
+                          className={`w-full h-full object-cover ${!agent.is_active ? 'grayscale' : ''}`}
+                        />
+                      ) : (
+                        <FiUser className={`h-6 w-6 ${!agent.is_active ? 'text-gray-500' : 'text-indigo-600'}`} />
+                      )}
+                    </div>
+                    <div className="ml-4 min-w-0">
+                      <div className={`text-sm font-medium truncate ${!agent.is_active ? 'text-gray-500' : 'text-gray-900'}`}>
+                        {agent.name}
+                        {!agent.is_active && (
+                          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">Deactivated</span>
+                        )}
+                      </div>
+                      <div className="text-xs text-gray-500 truncate">ID: {agent.id}</div>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 text-sm">
+                    <div className={`${!agent.is_active ? 'text-gray-500' : 'text-gray-900'} truncate`}>{agent.email}</div>
+                    <div className="text-gray-500 flex items-center gap-1 mt-1">
+                      <FiPhone className="h-3 w-3" />
+                      {agent.phone_no}
+                    </div>
+                  </div>
+
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <span className={`${agent.isManager ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'} inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium`}>
+                      {agent.isManager ? 'Manager' : 'Agent'}
+                    </span>
+                    <span className={`${agent.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'} inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium`}>
+                      {agent.is_active ? 'Active' : 'Deactivated'}
+                    </span>
+                    <span className="text-xs text-gray-600">{agent.sold_properties} properties</span>
+                  </div>
+
+                  <div className="mt-3 flex items-center gap-2">
+                    <button
+                      onClick={() => handleManagerToggle(agent.id, agent.isManager, agent.name)}
+                      disabled={!agent.is_active || !canRemoveManager(agent)}
+                      className={`${!agent.is_active || !canRemoveManager(agent)
+                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        : agent.isManager
+                          ? 'bg-red-100 text-red-700 hover:bg-red-200 border border-red-200'
+                          : 'bg-purple-100 text-purple-700 hover:bg-purple-200 border border-purple-200'
+                      } px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 flex-1`}
+                      title={
+                        !agent.is_active
+                          ? 'Cannot modify deactivated account'
+                          : !canRemoveManager(agent)
+                            ? 'Cannot remove manager who was created before you'
+                            : agent.isManager
+                              ? 'Remove manager role'
+                              : 'Make manager'
+                      }
+                    >
+                      {agent.isManager ? 'Remove Manager' : 'Make Manager'}
+                      {!canRemoveManager(agent) && agent.isManager && (
+                        <span className="ml-1 text-xs text-gray-500">(Protected)</span>
+                      )}
+                    </button>
+                    <button
+                      onClick={() => handleDeleteClick(agent.id, agent.name, agent.is_active, agent.profilePic_path)}
+                      disabled={!canDeleteAgent(agent)}
+                      className={`${!canDeleteAgent(agent)
+                        ? 'text-gray-400 cursor-not-allowed'
+                        : !agent.is_active
+                          ? 'text-green-600 hover:text-green-700'
+                          : 'text-red-600 hover:text-red-900'
+                      } p-2 rounded transition-all duration-200`}
+                      title={
+                        !canDeleteAgent(agent)
+                          ? agent.isManager && agentData?.isManager && agent.created_at && agentData?.created_at && new Date(agent.created_at) < new Date(agentData.created_at)
+                            ? 'Cannot deactivate manager who was created before you'
+                            : 'Cannot modify this account'
+                          : !agent.is_active
+                            ? 'Activate account'
+                            : 'Deactivate account'
+                      }
+                    >
+                      {!agent.is_active ? (
+                        <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                      ) : (
+                        <>
+                          <FiTrash2 className="h-5 w-5" />
+                          {!canDeleteAgent(agent) && agent.isManager && agentData?.isManager && agent.created_at && agentData?.created_at && new Date(agent.created_at) < new Date(agentData.created_at) && (
+                            <span className="ml-1 text-xs text-gray-500">(Protected)</span>
+                          )}
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Pagination */}
           <div className="px-6 py-4 border-t border-gray-200">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div className="text-sm text-gray-700">
                 Showing <span className="font-medium">1</span> to <span className="font-medium">{filteredAgents.length}</span> of{' '}
                 <span className="font-medium">{agents.length}</span> results

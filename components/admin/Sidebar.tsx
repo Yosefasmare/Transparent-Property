@@ -19,13 +19,6 @@ const Sidebar = () => {
     { name: 'Settings', icon: FiSettings, href: '/admin/settings' },
   ]
 
-  // Function to check if a nav item is active
-  const isActive = (href: string) => {
-    if (href === '/admin') {
-      return pathname === '/admin' || pathname.startsWith('/admin/') && !pathname.includes('/properties') && !pathname.includes('/inquiries') && !pathname.includes('/settings')
-    }
-    return pathname.startsWith(href)
-  }
 
   return (
     <>
@@ -59,7 +52,7 @@ const Sidebar = () => {
           <nav className="flex-1 px-4 py-6 space-y-2">
             {navItems.map((item) => {
               const Icon = item.icon
-              const active = isActive(item.href)
+              const active = pathname === item.href
               return (
                 <Link
                   key={item.name}

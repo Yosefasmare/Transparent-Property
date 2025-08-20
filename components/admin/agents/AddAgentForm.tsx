@@ -35,7 +35,6 @@ const AddAgentForm = () => {
     
     // Initialize timer when code is first set
     if (res.code && !timerActive && timeLeft === 0) {
-      console.log('🚀 Starting timer for code:', res.code)
       setTimeLeft(300) // 5 minutes = 300 seconds
       setTimerActive(true)
       return // Exit early to let the next render start the countdown
@@ -43,14 +42,11 @@ const AddAgentForm = () => {
     
     // Start countdown when timer is active and has time left
     if (timerActive && timeLeft > 0) {
-      console.log('⏰ Timer active, time left:', timeLeft)
       interval = setInterval(() => {
         setTimeLeft((prevTime) => {
           const newTime = prevTime - 1
-          console.log('⏳ Countdown:', newTime)
           
           if (newTime <= 0) {
-            console.log('⏰ Timer expired!')
             setTimerActive(false)
             // Auto-clear code and restore form when timer expires
             setTimeout(() => {
@@ -67,14 +63,12 @@ const AddAgentForm = () => {
     
     // Reset timer when code is cleared manually
     if (!res.code && (timerActive || timeLeft > 0)) {
-      console.log('🔄 Resetting timer - code cleared')
       setTimerActive(false)
       setTimeLeft(0)
     }
 
     return () => {
       if (interval) {
-        console.log('🧹 Cleaning up timer interval')
         clearInterval(interval)
       }
     }
@@ -171,6 +165,16 @@ const AddAgentForm = () => {
         if (type === 'success') {
           setSuccess(message)
           if (code) {
+            // Dispatch custom event for agent creation
+            const agentCreatedEvent = new CustomEvent('agentCreated', {
+              detail: {
+                email: formData.email,
+                tempPassword: formData.tempPassword,
+                inviteCode: code
+              }
+            })
+            window.dispatchEvent(agentCreatedEvent)
+            
             // Clear form only if code was successfully generated
             setFormData({
               email: '',

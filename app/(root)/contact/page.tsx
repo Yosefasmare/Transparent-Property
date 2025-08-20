@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaGlobe, FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import { IoMail, IoCall, IoLocation, IoTime, IoGlobe, IoLogoFacebook, IoLogoTwitter, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io5'
 
@@ -9,10 +10,8 @@ export const metadata: Metadata = {
 
 const ContactPage = () => {
   const contactInfo = {
-    phone: '+251 911 123 456',
+    phone: '+251 938 839 528',
     email: 'info@huluhouse.com',
-    address: 'Bole, Addis Ababa, Ethiopia',
-    workingHours: 'Monday - Friday: 9:00 AM - 6:00 PM',
     website: 'www.huluhouse.com'
   }
 
@@ -27,19 +26,19 @@ const ContactPage = () => {
     {
       name: 'Sales Team',
       description: 'Get help with property purchases and sales',
-      contact: '+251 911 123 457',
+      contact: '+251 938 839 528',
       email: 'sales@huluhouse.com'
     },
     {
       name: 'Rental Team',
       description: 'Find your perfect rental property',
-      contact: '+251 911 123 458',
+      contact: '+251 938 839 528',
       email: 'rentals@huluhouse.com'
     },
     {
       name: 'Support Team',
       description: 'Technical support and general inquiries',
-      contact: '+251 911 123 459',
+      contact: '+251 938 839 528',
       email: 'support@huluhouse.com'
     }
   ]
@@ -99,8 +98,17 @@ const ContactPage = () => {
       </section>
 
       {/* Contact Information Cards */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+              Contact Information
+            </h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              Get in touch with us through multiple channels. We&apos;re here to help you with all your real estate needs.
+            </p>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Phone */}
             <div className="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/20">
@@ -110,9 +118,9 @@ const ContactPage = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-neutral-900 mb-2">Phone</h3>
                 <p className="text-neutral-600 mb-3">{contactInfo.phone}</p>
-                <a href={`tel:${contactInfo.phone}`} className="text-accent-600 hover:text-accent-700 font-medium transition-colors">
+                <Link href={`tel:${contactInfo.phone}`} className="text-accent-600 hover:text-accent-700 font-medium transition-colors">
                   Call Now
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -124,35 +132,36 @@ const ContactPage = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-neutral-900 mb-2">Email</h3>
                 <p className="text-neutral-600 mb-3">{contactInfo.email}</p>
-                <a href={`mailto:${contactInfo.email}`} className="text-emerald-600 hover:text-emerald-700 font-medium transition-colors">
+                <Link href={`mailto:${contactInfo.email}`} className="text-emerald-600 hover:text-emerald-700 font-medium transition-colors">
                   Send Email
-                </a>
+                </Link>
               </div>
             </div>
 
-            {/* Address */}
+            {/* Website */}
             <div className="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/20">
               <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <IoLocation className="text-white text-2xl" />
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <IoGlobe className="text-white text-2xl" />
                 </div>
-                <h3 className="text-lg font-semibold text-neutral-900 mb-2">Address</h3>
-                <p className="text-neutral-600 mb-3">{contactInfo.address}</p>
-                <a href="#" className="text-secondary-600 hover:text-secondary-700 font-medium transition-colors">
-                  Get Directions
-                </a>
+                <h3 className="text-lg font-semibold text-neutral-900 mb-2">Website</h3>
+                <p className="text-neutral-600 mb-3">{contactInfo.website}</p>
+                <Link href={`https://${contactInfo.website}`} className="text-blue-600 hover:text-blue-700 font-medium transition-colors">
+                  Visit Site
+                </Link>
               </div>
             </div>
 
-            {/* Working Hours */}
+            {/* Business Hours */}
             <div className="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/20">
               <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
                   <IoTime className="text-white text-2xl" />
                 </div>
-                <h3 className="text-lg font-semibold text-neutral-900 mb-2">Working Hours</h3>
-                <p className="text-neutral-600 mb-3">{contactInfo.workingHours}</p>
-                <span className="text-orange-600 font-medium">Available Now</span>
+                <h3 className="text-lg font-semibold text-neutral-900 mb-2">Business Hours</h3>
+                <p className="text-neutral-600 mb-3">Mon - Fri: 9AM - 6PM</p>
+                <p className="text-neutral-600 mb-3">Sat: 10AM - 4PM</p>
+                <span className="text-purple-600 font-medium">Sunday: Closed</span>
               </div>
             </div>
           </div>
@@ -217,15 +226,15 @@ const ContactPage = () => {
                   <div className="space-y-3">
                     <div className="flex items-center justify-center gap-3">
                       <IoCall className="text-accent-600" />
-                      <a href={`tel:${dept.contact}`} className="text-neutral-800 hover:text-accent-600 transition-colors font-medium">
+                      <Link href={`tel:${dept.contact}`} className="text-neutral-800 hover:text-accent-600 transition-colors font-medium">
                         {dept.contact}
-                      </a>
+                      </Link>
                     </div>
                     <div className="flex items-center justify-center gap-3">
                       <IoMail className="text-accent-600" />
-                      <a href={`mailto:${dept.email}`} className="text-neutral-800 hover:text-accent-600 transition-colors font-medium">
+                      <Link href={`mailto:${dept.email}`} className="text-neutral-800 hover:text-accent-600 transition-colors font-medium">
                         {dept.email}
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -254,20 +263,20 @@ const ContactPage = () => {
                 <IoGlobe className="text-white text-3xl" />
               </div>
               <h3 className="text-xl font-semibold text-neutral-900 mb-2">Visit Our Website</h3>
-              <a 
+              <Link
                 href={`https://${contactInfo.website}`} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-accent-600 hover:text-accent-700 font-medium transition-colors"
               >
                 {contactInfo.website}
-              </a>
+              </Link>
             </div>
 
             {/* Social Media */}
             <div className="flex items-center gap-6">
               {socialLinks.map((social, index) => (
-                <a
+                <Link
                   key={index}
                   href={social.url}
                   target="_blank"
@@ -276,7 +285,7 @@ const ContactPage = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <social.icon className="text-2xl text-neutral-600 group-hover:scale-110 transition-transform duration-300" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -301,20 +310,20 @@ const ContactPage = () => {
                 Contact us today and let our expert team help you find your perfect home or investment property.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
+                <Link
                   href={`tel:${contactInfo.phone}`}
                   className="group inline-flex items-center gap-3 bg-white text-primary-800 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-neutral-100 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl transform"
                 >
                   Call Us Now
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-                </a>
-                <a 
+                </Link>
+                <Link
                   href={`mailto:${contactInfo.email}`}
                   className="group inline-flex items-center gap-3 border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:text-primary-800 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl transform"
                 >
                   Send Email
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

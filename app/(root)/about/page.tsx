@@ -8,10 +8,9 @@ export const metadata: Metadata = {
 
 const AboutPage = () => {
   const stats = [
-    { number: '2,500+', label: 'Properties Sold', icon: '🏠' },
-    { number: '5,000+', label: 'Happy Clients', icon: '😊' },
+    { number: '250+', label: 'Properties Sold', icon: '🏠' },
+    { number: '500+', label: 'Happy Clients', icon: '😊' },
     { number: '25+', label: 'Cities Covered', icon: '🌍' },
-    { number: '4.9/5', label: 'Client Rating', icon: '⭐' }
   ]
 
   const services = [
@@ -61,25 +60,25 @@ const AboutPage = () => {
   ]
 
   const team = [
-    {
-      name: 'Sarah Chen',
-      role: 'CEO & Founder',
-      experience: '15+ years',
-      bio: 'Former VP at Zillow, passionate about democratizing real estate access.'
-    },
-    {
-      name: 'Michael Rodriguez',
-      role: 'CTO',
-      experience: '12+ years',
-      bio: 'Ex-Google engineer, building the future of property technology.'
-    },
-    {
-      name: 'Jennifer Park',
-      role: 'Head of Operations',
-      experience: '10+ years',
-      bio: 'Expert in streamlining real estate processes and customer experience.'
-    }
-  ]
+  {
+    name: 'Yosef Asmare & Yonas Damte',
+    role: 'Lead Software Engineers',
+    experience: '2+ years',
+    bio: 'Skilled software engineers who have built diverse projects including study platforms and other web applications.'
+  },
+  {
+    name: 'Yeabebal',
+    role: 'Realtor',
+    experience: '1+ years',
+    bio: 'Dedicated real estate professional with hands-on experience helping clients buy, sell, and rent properties.'
+  },
+  {
+    name: 'Dani',
+    role: 'Manager',
+    experience: '—',
+    bio: 'Oversees team operations and ensures smooth project management across all initiatives.'
+  }
+]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-accent-50 to-secondary-50">
