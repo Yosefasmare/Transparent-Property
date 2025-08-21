@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import type { AuthResponse } from "@supabase/supabase-js";
+import { AgentProperties, NewProperty, SearchParams } from "./types";
 
 if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
   throw new Error("Missing Supabase environment variables");
@@ -79,7 +80,7 @@ export const getSavedProperties = async (savedIds:string[]) => {
   const {data,error} = await supabase
   .from('properties')
   .select('*')
-  .eq('id',savedIds)
+  .in('id',savedIds)
 
   if(error){
     console.log(error)
@@ -125,6 +126,7 @@ export const getPropertyById = async (id: string) => {
 
      return data;
   } catch (error) {
+    return []
     console.error("Error fetching property by ID:", error);
   }
 }
@@ -818,7 +820,7 @@ export const addNewProperties = async ( formData: NewProperty ) => {
     .eq('loc_name',formData.location.area.toLowerCase())
     .eq('loc_subcity',formData.location.subcity.toLowerCase())
     .eq('loc_city',formData.location.state.toLowerCase())
-    .single()
+    .maybeSingle()
 
     if(locationError){
       console.log("Error while Accessing Error:",locationError)
@@ -870,7 +872,6 @@ export const addNewProperties = async ( formData: NewProperty ) => {
        .eq('loc_name',formData.location.area.toLowerCase())
        .eq('loc_subcity',formData.location.subcity.toLowerCase())
        .eq('loc_city',formData.location.state.toLowerCase())
-       .single() 
 
        if(UpdatelocationError){
          console.log("error while add location",UpdatelocationError)
@@ -950,12 +951,12 @@ export const deleteProperty = async (property_id:string,loc_name:string,loc_subc
     .eq('loc_name',loc_name.toLowerCase())
     .eq('loc_subcity',loc_subcity.toLowerCase())
     .eq('loc_city',loc_city.toLowerCase())
-    .single() 
+    .maybeSingle() 
 
-    if(locationError){
+    if(locationError || !data){
       console.log(locationError)
       return {
-        message: 'successfully dleted property, but could not get locations',
+         message: 'successfully deleted property, but location not found',
         type: 'error'
       }
     }
@@ -967,7 +968,6 @@ export const deleteProperty = async (property_id:string,loc_name:string,loc_subc
     }).eq('loc_name',loc_name.toLowerCase())
     .eq('loc_subcity',loc_subcity.toLowerCase())
     .eq('loc_city',loc_city.toLowerCase())
-    .single() 
 
     if(location_updateError){
       console.log(location_updateError)

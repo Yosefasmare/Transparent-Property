@@ -5,6 +5,9 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineArrowRight, HiOutlineSearch } from "react-icons/hi";
 import LocationCard from "./LocationCard";
 import Link from "next/link";
+import { location } from "@/lib/types";
+
+
 
 export default function ExploreByLocation() {
   const [locations, setLocations] = useState<location[]>([]);
@@ -114,22 +117,52 @@ export default function ExploreByLocation() {
           </div>
         </div>
 
-        {/* Locations Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-          {filteredLocations.map((loc) => (
-            <LocationCard key={loc.id} loc={loc} />
-          ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <Link
-          href={'/locations'}
-          className="inline-flex items-center gap-3 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-medium px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <span>View All Locations</span>
-            <HiOutlineArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
+        {/* Empty State / Locations Grid */}
+        {filteredLocations.length === 0 ? (
+          <div className="bg-white/70 backdrop-blur-sm border border-neutral-200 rounded-2xl p-12 text-center shadow-sm">
+            <div className="mx-auto w-16 h-16 rounded-full bg-primary-50 flex items-center justify-center mb-6">
+              <HiOutlineSearch className="w-7 h-7 text-primary-600" />
+            </div>
+            <h3 className="text-xl sm:text-2xl font-medium text-neutral-800 mb-3">No locations found</h3>
+            <p className="text-neutral-600 max-w-xl mx-auto">
+              {searchTerm
+                ? `We couldn\'t find any locations matching "${searchTerm}". Try a different keyword or clear your search.`
+                : 'We don\'t have locations to show right now. Please check back later.'}
+            </p>
+            <div className="mt-8 flex items-center justify-center gap-3">
+              {searchTerm && (
+                <button
+                  type="button"
+                  onClick={() => setSearchTerm('')}
+                  className="px-5 py-3 rounded-xl border border-neutral-300 text-neutral-700 hover:bg-neutral-50 transition">
+                  Clear search
+                </button>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+            {filteredLocations.map((loc) => (
+              <LocationCard key={loc.id} loc={loc} />
+            ))}
+              <div className="mt-8 flex items-center justify-center gap-3">
+              {searchTerm && (
+                <button
+                  type="button"
+                  onClick={() => setSearchTerm('')}
+                  className="px-5 py-3 rounded-xl border border-neutral-300 text-neutral-700 hover:bg-neutral-50 transition">
+                  Clear search
+                </button>
+              )}
+              <Link
+                href={'/locations'}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-medium px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all">
+                <span>View All Locations</span>
+                <HiOutlineArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

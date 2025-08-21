@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { logoutUser } from './supabaseClient'
+import { AgentData, AgentProperties, Inquiries } from './types'
 
 
 

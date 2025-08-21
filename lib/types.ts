@@ -1,4 +1,4 @@
-interface Property {
+export interface Property {
         id: string;
         image_paths: string[];
         price: number;
@@ -16,7 +16,7 @@ interface Property {
         views?: number;
 }
 
-interface SearchParams {
+export interface SearchParams {
     status?: string;
     type?: string;
     location?: string;
@@ -33,7 +33,7 @@ interface SearchParams {
     furnishing?: string
 }
 
-type AgentData = {
+export type AgentData = {
     id:string
     name:string
     email:string
@@ -45,13 +45,13 @@ type AgentData = {
     created_at: string
 }
 
-type Feature = {
+export type Feature = {
   icon: string; 
   name: string;
   available: boolean;
 };
 
-interface AgentProperties {
+export interface AgentProperties {
    id: string;
    created_at:string;
    image_paths: string[];
@@ -81,7 +81,7 @@ interface AgentProperties {
    agent_id: string;
 }
 
-type Inquiries = {
+export type Inquiries = {
   id:string;
   created_at:string;
   name:string;
@@ -91,13 +91,13 @@ type Inquiries = {
   property_id: string
 }
 
-interface AmenityItem {
+export interface AmenityItem {
   icon: string;
   name: string;
   available: boolean
 }
 
-interface Amenities {
+export interface Amenities {
   outdoor: {
     swimming_pool: boolean;
     garden: boolean;
@@ -113,7 +113,7 @@ interface Amenities {
 }
 
 
-interface NewProperty  {
+export interface NewProperty  {
   title: string;
   type: string;
   status: string;
@@ -139,7 +139,7 @@ interface NewProperty  {
   year_built:number | null
 }
 
-interface location {
+export interface location {
   id: string,
   loc_name:string,
   loc_pic:string,

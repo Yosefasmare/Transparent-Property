@@ -174,18 +174,38 @@ const AddPropertyForm: React.FC = () => {
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
-      const imageUrls = Array.from(files).map(file => URL.createObjectURL(file));
-      const file = Array.from(files).map(file => file)
-      setFormData(prev => ({...prev, files: [...prev.files,...file]  }))
+      const currentCount = formData.image_urls.length;
+      const MAX_IMAGES = 8;
+      const remainingSlots = MAX_IMAGES - currentCount;
+
+      if (remainingSlots <= 0) {
+        setErrors(prev => ({ ...prev, files: `You can upload up to ${MAX_IMAGES} images only.` }));
+        return;
+      }
+
+      const selectedFiles = Array.from(files).slice(0, remainingSlots);
+      const ignoredCount = files.length - selectedFiles.length;
+
+      const imageUrls = selectedFiles.map(file => URL.createObjectURL(file));
+      const fileArray = selectedFiles.map(file => file);
+
+      setFormData(prev => ({ ...prev, files: [...prev.files, ...fileArray] }));
       setFormData(prev => ({ ...prev, image_urls: [...prev.image_urls, ...imageUrls] }));
+
+      // Clear file-related errors if we're within limits
+      setErrors(prev => ({ ...prev, files: ignoredCount > 0 ? `Only ${MAX_IMAGES} images allowed. Ignored ${ignoredCount} extra ${ignoredCount === 1 ? 'file' : 'files'}.` : undefined }));
     }
   };
 
   const removeImage = (index: number) => {
     setFormData(prev => ({
       ...prev,
-      image_urls: prev.image_urls.filter((_, i) => i !== index)
+      image_urls: prev.image_urls.filter((_, i) => i !== index),
+      files: prev.files.filter((_, i) => i !== index)
     }));
+
+    // Clear any file count errors after removal
+    setErrors(prev => ({ ...prev, files: undefined }));
   };
 
   const validateForm = (): boolean => {
@@ -202,6 +222,7 @@ const AddPropertyForm: React.FC = () => {
     if (formData.baths < 0) newErrors.baths = 'Baths cannot be negative';
     if (formData.parking < 0) newErrors.parking = 'Parking cannot be negative';
     if(formData.files.length === 0) newErrors.files = 'Upload Atleast 1 image'
+    if(formData.files.length > 8) newErrors.files = 'Maximum 8 images are allowed';
     
     // Initialize address errors object
     newErrors.address = {};
@@ -790,11 +811,16 @@ const AddPropertyForm: React.FC = () => {
                       multiple
                       accept="image/*"
                       onChange={handleImageUpload}
+                      disabled={formData.image_urls.length >= 8}
                     />
                   </label>
                   <span className="text-gray-500"> or drag and drop</span>
                 </div>
-                <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB each</p>
+                <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB each • Max 8 images</p>
+                {errors.files && (
+                  <p className="text-red-500 text-sm mt-2">{errors.files}</p>
+                )}
+                <p className="text-xs text-gray-500 mt-1">Selected: {formData.image_urls.length}/8</p>
               </div>
             </div>
 

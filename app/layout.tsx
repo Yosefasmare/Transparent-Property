@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Hulu House - Trusted House Renting & Selling Platform",
@@ -36,6 +37,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+         <link rel="preconnect" href="https://udlwtcamuqfxdxhrniau.supabase.co" crossOrigin="" />
+      </Head>
       <body className="antialiased bg-background text-neutral-700">
         {children}
       </body>

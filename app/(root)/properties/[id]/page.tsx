@@ -7,100 +7,126 @@ import SimilarProperties from '@/components/properties/SimilarProperties'
 import ViewCounter from '@/components/properties/ViewCounter'
 import { getPosted_by, getPropertyById } from '@/lib/supabaseClient'
 import ViewTracker from '@/components/properties/ViewTracker'
+import { notFound } from 'next/navigation'
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-
-
 const PropertyPage = async ({ params }: Props) => {
-  const {id:paramsId} = await params
-  const property = await getPropertyById(paramsId);
-  const posted_by = await getPosted_by(property.agent_id)
-
-  const PropertyInfos = {
-    id: property?.id,
-    title: property?.title,
-    price: property?.price,
-    price_per: property.price_per,
-    status: property?.status,
-    type: property?.type,
-    location: `${property?.location.area}, ${property?.location.state}`,
-    listedDate: property?.created_at,
-    parking: property?.parking,
-    bedrooms: property?.beds,
-    bathrooms: property?.baths,
-    size: property?.size,
-    description: property?.description,
-    features: property?.features,
-    views: property?.views || 0,
-  }
-
-  const AdditionalInfo = {
-    type: property?.type,
-    condition: property?.condition,
-    year_built: property?.year_built,
-    furnishing: property?.furnishing
-  }
-  const CurrentProperty = {
-    id: paramsId,
-    type: property?.type,
-    price: property?.price,
-    location : {
-      area: property?.location.area,
-      state: property?.location.state
+  try {
+    const {id:paramsId} = await params
+    const property = await getPropertyById(paramsId);
+    
+    // Check if property exists
+    if (property.length === 0) {
+      notFound();
     }
-  }
 
-  return (
-    <div className="min-h-screen mt-10  bg-gray-50">
-      {/* Hero Section with Gallery */}
-      <section className="bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative">
-            <PropertyGallery propertyImagePaths={property.image_paths} />
-            {/* View Counter positioned over the gallery */}
-            <div className="absolute top-4 right-4 z-10">
-              <ViewCounter views={property?.views} />
+    // Check if property has essential data
+    if (!property.title || !property.image_paths || !property.location) {
+      notFound();
+    }
+
+  
+
+    const posted_by = await getPosted_by(property.agent_id)
+
+    const PropertyInfos = {
+      id: property?.id,
+      title: property?.title,
+      price: property?.price,
+      price_per: property.price_per,
+      status: property?.status,
+      type: property?.type,
+      location: `${property?.location.area}, ${property?.location.state}`,
+      listedDate: property?.created_at,
+      parking: property?.parking,
+      bedrooms: property?.beds,
+      bathrooms: property?.baths,
+      size: property?.size,
+      description: property?.description,
+      features: property?.features,
+      views: property?.views || 0,
+    }
+
+    const AdditionalInfo = {
+      type: property?.type,
+      condition: property?.condition,
+      year_built: property?.year_built,
+      furnishing: property?.furnishing
+    }
+    const CurrentProperty = {
+      id: paramsId,
+      type: property?.type,
+      price: property?.price,
+      location : {
+        area: property?.location.area,
+        state: property?.location.state
+      }
+    }
+
+    return (
+      <div className="min-h-screen mt-10  bg-gray-50">
+        {/* Hero Section with Gallery */}
+        <section className="bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="relative">
+              <PropertyGallery propertyImagePaths={property.image_paths} />
+              {/* View Counter positioned over the gallery */}
+              <div className="absolute top-4 right-4 z-10">
+                <ViewCounter views={property?.views} />
+              </div>
+              
+              {/* Sold Property Banner */}
+              {property.is_sold && (
+                <div className="absolute top-4 left-4 z-10">
+                  <div className="bg-red-600 text-white px-4 py-2 rounded-full font-medium shadow-lg">
+                    SOLD
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Main Content */}
-      <section className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Main Details */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Property Details */}
-            <PropertyDetails PropertyInfo={PropertyInfos} />
+        {/* Main Content */}
+        <section className="max-w-7xl mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Left Column - Main Details */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Property Details */}
+              <PropertyDetails PropertyInfo={PropertyInfos} />
 
-            {/* Amenities */}
-            <PropertyAmenities PropertyAmenities={property?.amenities} AdditionalInfo={AdditionalInfo} />
+              {/* Amenities */}
+              <PropertyAmenities PropertyAmenities={property?.amenities} AdditionalInfo={AdditionalInfo} />
 
-            {/* Map need NOTICE: implementation*/}
+              {/* Map need NOTICE: implementation*/}
 
-            <PropertyMap location={property?.location} />
+              <PropertyMap location={property?.location} />
+            </div>
+
+            {/* Right Column - Contact & Sidebar */}
+            <div className="space-y-6">
+              {/* Contact Form */}
+              <PropertyContact postedBy={posted_by} propertyId={paramsId} />
+            </div>
           </div>
+        </section>
 
-          {/* Right Column - Contact & Sidebar */}
-          <div className="space-y-6">
-            {/* Contact Form */}
-            <PropertyContact postedBy={posted_by} propertyId={paramsId} />
+        {/* Similar Properties */}
+        <section className="bg-white py-12">
+          <div className="max-w-7xl mx-auto px-4">
+            <SimilarProperties CurrentProperty={CurrentProperty} />
           </div>
-        </div>
-      </section>
-
-      {/* Similar Properties */}
-      <section className="bg-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <SimilarProperties CurrentProperty={CurrentProperty} />
-        </div>
-      </section>
-      <ViewTracker propertyId={paramsId} />
-    </div>
-  )
+        </section>
+        <ViewTracker propertyId={paramsId} />
+      </div>
+    )
+  } catch (error) {
+    console.error('Error loading property:', error);
+    notFound();
+  }
 }
 
 export default PropertyPage

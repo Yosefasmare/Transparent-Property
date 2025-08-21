@@ -4,8 +4,26 @@ import React from 'react'
 import Property from './Property'
 import useStore from '@/lib/store'
 
+interface PropertyType {
+   id: string;
+        image_paths: string[];
+        price: number;
+        title: string;
+         location: {
+            area: string;
+            state: string;
+            };
+        type: string;
+        status: string;
+        beds: number;
+        baths: number;
+        size: number;
+        created_at?: string;
+        views?: number;
+}
+
 type Props = {
-    properties: Property[]
+    properties: PropertyType[]
 }
 
 const LoadingSkeleton = () => {

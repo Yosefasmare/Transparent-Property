@@ -1,26 +1,17 @@
-import { getProperties } from "@/lib/supabaseClient";
-
 import { FiHome } from "react-icons/fi";
 import PropertyContainer from "./properties/PropertyContainer";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import Link from "next/link";
+import { Property } from "@/lib/types";
 
 
-export default async function FeaturedProperties() {
 
-  const properties = await getProperties(6);
+export default async function FeaturedProperties({properties}: { properties: Property[] }) {
+
 
   return (
     <section className="py-16 bg-gradient-to-br from-neutral-50 via-primary-50 to-secondary-50" id="featured">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-neutral-800 mb-4">
-            Featured Properties
-          </h2>
-          <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
-            Discover our handpicked selection of premium properties in prime locations
-          </p>
-        </div>
         {
           (properties?.length === 0 || !properties) ? (
             <div className="flex flex-col items-center justify-center py-16 px-6 bg-gradient-to-br from-primary-50 via-white to-secondary-50 rounded-2xl shadow-xl mx-auto max-w-md border border-primary-100 ring-2 ring-secondary-100 animate-fade-in">

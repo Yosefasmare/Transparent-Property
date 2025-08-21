@@ -7,6 +7,7 @@ import useStore from '@/lib/store'
 import Link from 'next/link'
 import { deactivateOrActivateAccount, updateManagerStatus } from '@/lib/supabaseClient'
 import ConfirmationPopup from '../ConfirmationPopup'
+import { AgentData } from '@/lib/types'
 
 const AgentsList = () => {
   const [searchTerm, setSearchTerm] = useState('')

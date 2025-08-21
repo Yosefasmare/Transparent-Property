@@ -9,6 +9,7 @@ import {
 import Image from 'next/image';
 import { deletPropertyImages, removeDeletedImagePath, updatePropertyData, uploadPropertyImages } from '@/lib/supabaseClient';
 import { getUpdatedFields } from './getChangedData';
+import { AgentProperties } from '@/lib/types';
 
 interface EditPropertyFormProps {
   propertyData: AgentProperties;
@@ -163,6 +164,9 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
+      const newErrors: FormErrors = {};
+      const totalFiles = files.length + formData.image_paths.length
+      if(totalFiles > 8) return newErrors.image_paths = `You can upload a maximum of 8 images , you have ${8 - formData.image_paths.length} slots available`;
       const imageUrls = Array.from(files).map(file => URL.createObjectURL(file));
       setFileUploaded(prev => [...prev,...files]);
       setImagePreview(prev=> [...prev,...imageUrls])
@@ -869,6 +873,9 @@ const EditPropertyForm: React.FC<EditPropertyFormProps> = ({ propertyData }) => 
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Upload New Images
             </label>
+            <span className="text-sm text-red-500">
+            you have {8 - formData.image_paths.length} image upload slots available
+            </span>
             <input
               type="file"
               multiple

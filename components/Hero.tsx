@@ -12,7 +12,9 @@ export default function Hero() {
         src={`${process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_PIC_URL}/public_pic/banner.webp`}
         alt="Find Your Dream Home"
         fill
-        priority
+        priority        
+        fetchPriority="high" 
+        quality={60}
         sizes="100vw"
         className="object-cover"
       />

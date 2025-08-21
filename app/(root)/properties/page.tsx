@@ -7,7 +7,7 @@ import Link from "next/link";
 import PropertyContainer from "@/components/properties/PropertyContainer";
 import Pagination from "@/components/Pagination";
 
-
+export const revalidate = 60; // re-fetch from Supabase every 60 seconds
 
 export default async function PropertiesPage({searchParams}: {searchParams: Promise<{ [key: string]: string }>}) {
   const {status, type, location, minPrice, maxPrice, minSqFt, maxSqFt, bedroomCount, bathroomCount, condition,area,state,subcity,furnishing, page = "1"} = await searchParams;

@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { getLocations } from "@/lib/supabaseClient";
 import { HiOutlineSearch, HiOutlineFilter } from "react-icons/hi";
 import LocationCard from './LocationCard';
+import { location } from '@/lib/types';
+
 
 const LocationsClient = () => {
   const [locations, setLocations] = useState<location[]>([]);
