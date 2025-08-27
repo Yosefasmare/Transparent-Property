@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Head from "next/head";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
   title: "Hulu House - Trusted House Renting & Selling Platform",
@@ -41,6 +42,12 @@ export default function RootLayout({
          <link rel="preconnect" href="https://udlwtcamuqfxdxhrniau.supabase.co" crossOrigin="" />
       </Head>
       <body className="antialiased bg-background text-neutral-700">
+        <NextTopLoader
+          color="#000080"     // Customize color
+          height={6}       // Thickness in px
+          crawlSpeed={200} // Speed
+          showSpinner={false} // Hide spinner
+        />
         {children}
       </body>
     </html>
