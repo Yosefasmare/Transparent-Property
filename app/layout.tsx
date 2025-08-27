@@ -4,26 +4,42 @@ import Head from "next/head";
 import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
-  title: "Hulu House - Trusted House Renting & Selling Platform",
-  description: "Discover your perfect home with Hulu House. We're a transparent and trusted platform for renting and selling houses. Browse verified properties, connect with reliable agents, and make informed decisions with confidence. Your trusted partner in real estate.",
-  keywords: "house renting, house selling, real estate platform, property rental, home buying, trusted real estate, transparent property platform, verified properties, reliable agents, house marketplace",
-  authors: [{ name: "Hulu House Team" }],
-  creator: "Hulu House",
-  publisher: "Hulu House",
+  title: "Hullu House - Trusted House Renting & Selling Platform",
+  description:
+    "Find your dream home with Hullu House. A transparent and trusted real estate platform for renting and selling houses. Explore verified properties, connect with reliable agents, and make confident decisions. Your trusted partner in real estate.",
+  keywords:
+    "Hullu House, Hulu House, house renting, house selling, real estate, property rental, home buying, trusted real estate, verified properties, reliable agents, property marketplace, rent house Ethiopia, buy house Ethiopia",
+  authors: [{ name: "Hullu House Team" }],
+  creator: "Hullu House",
+  publisher: "Hullu House",
   robots: "index, follow",
+  metadataBase: new URL("https://hulluhouse.com"),
   openGraph: {
-    title: "Hulu House - Trusted House Renting & Selling Platform",
-    description: "Discover your perfect home with Hulu House. We're a transparent and trusted platform for renting and selling houses. Browse verified properties, connect with reliable agents, and make informed decisions with confidence.",
+    title: "Hullu House - Trusted House Renting & Selling Platform",
+    description:
+      "Discover your perfect home with Hullu House. We provide a transparent and trusted platform for renting and selling houses. Browse verified listings and connect with trusted agents.",
+    url: "https://hulluhouse.com",
     type: "website",
     locale: "en_US",
-    siteName: "Hulu House",
+    siteName: "Hullu House",
+    images: [
+      {
+        url: "https://hulluhouse.com/logo.webp", 
+        width: 1200,
+        height: 630,
+        alt: "Hullu House - Trusted House Renting & Selling Platform",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hulu House - Trusted House Renting & Selling Platform",
-    description: "Discover your perfect home with Hulu House. We're a transparent and trusted platform for renting and selling houses.",
-  }
+    title: "Hullu House - Trusted House Renting & Selling Platform",
+    description:
+      "Discover your perfect home with Hullu House. Browse verified properties, connect with reliable agents, and make confident real estate decisions.",
+    images: ["https://hulluhouse.com/logo.webp"], 
+  },
 };
+
 
 export const viewport: Viewport = {
   width: "device-width",
