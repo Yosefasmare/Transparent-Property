@@ -14,7 +14,7 @@ const LoginHero = () => {
       <div className="relative h-full flex items-center justify-center">
         <div className="text-center text-white px-8">
           <h1 className="text-3xl sm:text-4xl font-medium mb-4 animate-fade-in-left">
-            HuluHouse Admin
+            HulluHouse Admin
           </h1>
           <p className="text-lg sm:text-xl opacity-90 animate-fade-in-right">
             Manage your properties with ease

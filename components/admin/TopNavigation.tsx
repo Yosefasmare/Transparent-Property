@@ -55,7 +55,7 @@ const TopNavigation =  () => {
             </button>
             
             <div className="flex-shrink-0 flex items-center">
-              <h1 className="text-xl font-medium text-indigo-600">HuluHouse</h1>
+              <h1 className="text-xl font-medium text-indigo-600">HulluHouse</h1>
             </div>
             
             {/* Desktop Navigation */}
