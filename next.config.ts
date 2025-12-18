@@ -14,14 +14,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true, // Inline critical Tailwind CSS
     optimizePackageImports: ["react-icons", "leaflet"],
-    turbo: {
-      rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
-        },
-      },
-    },
   },
 
   compress: true, // Enable gzip/deflate
