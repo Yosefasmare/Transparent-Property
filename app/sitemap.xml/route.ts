@@ -9,7 +9,7 @@ const CACHE_TIME = 24 * 60 * 60 * 1000; // 24 hours
 export const runtime = "edge";
 
 function generateSiteMap(properties: { id: string }[]) {
-  const baseUrl = "https://hulluhouse.com";
+  const baseUrl = "https://transparentproperty.com";
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

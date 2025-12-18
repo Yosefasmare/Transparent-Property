@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About Hullu House - Your Trusted Real Estate Partner',
-  description: 'Learn about Hullu House, our mission to revolutionize real estate, and the dedicated team behind our success in connecting people with their dream homes.',
+  title: 'About Transparent property - Your Trusted Real Estate Partner',
+  description: 'Learn about Transparent property, our mission to revolutionize real estate, and the dedicated team behind our success in connecting people with their dream homes.',
 }
 
 const AboutPage = () => {
@@ -185,7 +185,7 @@ const AboutPage = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
-              Why Choose Hullu House?
+              Why Choose Transparent property?
             </h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
               We combine innovation, trust, and excellence to deliver an unmatched real estate experience.
@@ -220,7 +220,7 @@ const AboutPage = () => {
               Meet Our Leadership
             </h2>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              The passionate team behind Hullu House&apos;s success story.
+              The passionate team behind Transparent property&apos;s success story.
             </p>
           </div>
           
@@ -260,8 +260,8 @@ const AboutPage = () => {
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Ready to Find Your Dream Home?
               </h2>
-              <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto">
-                Join thousands of satisfied customers who have found their perfect home with Hullu House. 
+                <p className="text-xl mb-10 opacity-90 max-w-3xl mx-auto">
+                Join thousands of satisfied customers who have found their perfect home with Transparent property. 
                 Start your journey today.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

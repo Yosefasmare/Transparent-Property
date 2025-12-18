@@ -4,15 +4,15 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaGlobe, FaFacebook, FaTw
 import { IoMail, IoCall, IoLocation, IoTime, IoGlobe, IoLogoFacebook, IoLogoTwitter, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io5'
 
 export const metadata: Metadata = {
-  title: 'Contact Hullu House - Get in Touch with Our Team',
-  description: 'Contact Hullu House for any inquiries about properties, real estate services, or general questions. Our team is here to help you find your dream home.',
+  title: 'Contact Transparent property - Get in Touch with Our Team',
+  description: 'Contact Transparent property for any inquiries about properties, real estate services, or general questions. Our team is here to help you find your dream home.',
 }
 
 const ContactPage = () => {
   const contactInfo = {
     phone: '+251 938 839 528',
-    email: 'info@hulluhouse.com',
-    website: 'www.hulluhouse.com'
+    email: 'info@transparentproperty.com',
+    website: 'www.transparentproperty.com'
   }
 
   const socialLinks = [
@@ -27,19 +27,19 @@ const ContactPage = () => {
       name: 'Sales Team',
       description: 'Get help with property purchases and sales',
       contact: '+251 938 839 528',
-      email: 'sales@hulluhouse.com'
+      email: 'sales@transparentproperty.com'
     },
     {
       name: 'Rental Team',
       description: 'Find your perfect rental property',
       contact: '+251 938 839 528',
-      email: 'rentals@hulluhouse.com'
+      email: 'rentals@transparentproperty.com'
     },
     {
       name: 'Support Team',
       description: 'Technical support and general inquiries',
       contact: '+251 938 839 528',
-      email: 'support@hulluhouse.com'
+      email: 'support@transparentproperty.com'
     }
   ]
 
@@ -79,7 +79,7 @@ const ContactPage = () => {
           <h1 className="text-4xl md:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
             Get in Touch with
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-800 to-primary-700">
-              Hullu House
+              Transparent property
             </span>
           </h1>
           

@@ -2,9 +2,12 @@ import { createClient } from "@supabase/supabase-js";
 import type { AuthResponse } from "@supabase/supabase-js";
 import { AgentProperties, NewProperty, SearchParams } from "./types";
 
+
 if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
   throw new Error("Missing Supabase environment variables");
 }
+
+
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,

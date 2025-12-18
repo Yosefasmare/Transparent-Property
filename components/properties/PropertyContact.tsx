@@ -131,11 +131,11 @@ const PropertyContact = ({ postedBy,propertyId }: Props) => {
             <span className="font-normal">+{postedBy.phone_no || '25123456789'}</span>
           </Link>
           <Link
-            href={`mailto:${postedBy.email || 'support@hulluhouse.com'}`}
+            href={`mailto:${postedBy.email || 'support@transparentproperty.com'}`}
             className="flex items-center gap-3 p-3 bg-gray-50 text-gray-700 rounded-xl hover:bg-gray-100 transition-colors duration-300"
           >
             <FaEnvelope className="text-gray-500" />
-            <span className="font-normal">{postedBy.email || 'support@hulluhouse.com'}</span>
+            <span className="font-normal">{postedBy.email || 'support@transparentproperty.com'}</span>
           </Link>
         </div>
       </div>
